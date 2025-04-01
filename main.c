@@ -309,22 +309,22 @@ bool clone_repository(ReceivePayload *payload)
 
             if (payload->branch && strlen(payload->branch) > 0)
             {
-                sprintf(git_command, "git -q -c core.sharedRepository=group clone -b %s %s", payload->branch, url_with_token);
+                sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, url_with_token);
             }
             else
             {
-                sprintf(git_command, "git -q -c core.sharedRepository=group clone %s", url_with_token);
+                sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", url_with_token);
             }
         }
         else
         {
             if (payload->branch && strlen(payload->branch) > 0)
             {
-                sprintf(git_command, "git -q -c core.sharedRepository=group clone -b %s %s", payload->branch, payload->github_link);
+                sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, payload->github_link);
             }
             else
             {
-                sprintf(git_command, "git -q -c core.sharedRepository=group clone %s", payload->github_link);
+                sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", payload->github_link);
             }
         }
 

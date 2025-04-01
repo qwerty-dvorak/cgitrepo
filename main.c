@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <stdbool.h>
 #include <sys/stat.h>
-#include <pthread.h> 
+#include <pthread.h>
 
 #define PORT 3000
 #define BUFFER_SIZE 8192
@@ -94,6 +94,53 @@ static void *handle_connection(void *arg)
     {
         char *response = "HTTP/1.1 204 No Content\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\n\r\n";
         send(new_socket, response, strlen(response), 0);
+    }
+    else if (strncmp(buffer, "GET /analysis HTTP/1.", 20) == 0)
+    {
+        // Return the analysis data JSON file
+        FILE *analysis_file = fopen("analysis_data.json", "r");
+        if (analysis_file == NULL)
+        {
+            char *response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 26\r\n\r\nAnalysis data not available";
+            send(new_socket, response, strlen(response), 0);
+        }
+        else
+        {
+            // Get file size
+            fseek(analysis_file, 0, SEEK_END);
+            long file_size = ftell(analysis_file);
+            fseek(analysis_file, 0, SEEK_SET);
+
+            // Read file content
+            char *file_content = malloc(file_size + 1);
+            if (file_content == NULL)
+            {
+                fclose(analysis_file);
+                char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 28\r\n\r\nFailed to allocate memory";
+                send(new_socket, response, strlen(response), 0);
+            }
+            else
+            {
+                size_t read_size = fread(file_content, 1, file_size, analysis_file);
+                fclose(analysis_file);
+
+                if (read_size != file_size)
+                {
+                    free(file_content);
+                    char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 23\r\n\r\nFailed to read file";
+                    send(new_socket, response, strlen(response), 0);
+                }
+                else
+                {
+                    file_content[file_size] = '\0';
+                    char response_header[BUFFER_SIZE];
+                    sprintf(response_header, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: %ld\r\n\r\n", file_size);
+                    send(new_socket, response_header, strlen(response_header), 0);
+                    send(new_socket, file_content, file_size, 0);
+                    free(file_content);
+                }
+            }
+        }
     }
     else
     {

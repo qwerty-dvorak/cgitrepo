@@ -2,36 +2,12 @@
   "nodes": [
     {
       "id": 0,
-      "name": "Server.ts",
+      "name": "IUser.ts",
       "category": "file",
-      "path": "testbe/src/server/Server.ts",
-      "dependencies": [
-        "dotenv",
-        "path",
-        "express",
-        "routing-controllers"
-      ]
+      "path": "testbe/src/interfaces/IUser.ts"
     },
     {
       "id": 1,
-      "name": "UserService.ts",
-      "category": "file",
-      "path": "testbe/src/services/UserService.ts",
-      "dependencies": [
-        "@prisma/client"
-      ]
-    },
-    {
-      "id": 2,
-      "name": "Hash.ts",
-      "category": "file",
-      "path": "testbe/src/utils/Hash.ts",
-      "dependencies": [
-        "bcryptjs"
-      ]
-    },
-    {
-      "id": 3,
       "name": "AuthorizationChecker.ts",
       "category": "file",
       "path": "testbe/src/utils/AuthorizationChecker.ts",
@@ -41,62 +17,7 @@
       ]
     },
     {
-      "id": 4,
-      "name": "AuthController.ts",
-      "category": "file",
-      "path": "testbe/src/controllers/AuthController.ts",
-      "dependencies": [
-        "routing-controllers"
-      ]
-    },
-    {
-      "id": 5,
-      "name": "ExampleController.ts",
-      "category": "file",
-      "path": "testbe/src/controllers/ExampleController.ts",
-      "dependencies": [
-        "routing-controllers"
-      ]
-    },
-    {
-      "id": 6,
-      "name": "UserController.ts",
-      "category": "file",
-      "path": "testbe/src/controllers/UserController.ts",
-      "dependencies": [
-        "@prisma/client"
-      ]
-    },
-    {
-      "id": 7,
-      "name": "ErrorHandler.ts",
-      "category": "file",
-      "path": "testbe/src/middleware/ErrorHandler.ts",
-      "dependencies": [
-        "express"
-      ]
-    },
-    {
-      "id": 8,
-      "name": "AuthService.ts",
-      "category": "file",
-      "path": "testbe/src/services/AuthService.ts",
-      "dependencies": [
-        "routing-controllers",
-        "bcryptjs"
-      ]
-    },
-    {
-      "id": 9,
-      "name": "GenerateJWT.ts",
-      "category": "file",
-      "path": "testbe/src/utils/GenerateJWT.ts",
-      "dependencies": [
-        "jsonwebtoken"
-      ]
-    },
-    {
-      "id": 10,
+      "id": 2,
       "name": "app.ts",
       "category": "file",
       "path": "testbe/src/app.ts",
@@ -105,7 +26,52 @@
       ]
     },
     {
-      "id": 11,
+      "id": 3,
+      "name": "AuthController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/AuthController.ts",
+      "dependencies": [
+        "routing-controllers"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "ExampleController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/ExampleController.ts",
+      "dependencies": [
+        "routing-controllers"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ErrorHandler.ts",
+      "category": "file",
+      "path": "testbe/src/middleware/ErrorHandler.ts",
+      "dependencies": [
+        "express"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Server.ts",
+      "category": "file",
+      "path": "testbe/src/server/Server.ts",
+      "dependencies": [
+        "path",
+        "express",
+        "routing-controllers",
+        "dotenv"
+      ]
+    },
+    {
+      "id": 7,
+      "name": ".eslintrc.js",
+      "category": "file",
+      "path": "testbe/.eslintrc.js"
+    },
+    {
+      "id": 8,
       "name": "LoginDto.ts",
       "category": "file",
       "path": "testbe/src/dtos/LoginDto.ts",
@@ -114,16 +80,46 @@
       ]
     },
     {
-      "id": 12,
+      "id": 9,
+      "name": "UserService.ts",
+      "category": "file",
+      "path": "testbe/src/services/UserService.ts",
+      "dependencies": [
+        "@prisma/client"
+      ]
+    },
+    {
+      "id": 10,
       "name": "index.ts",
       "category": "file",
       "path": "testbe/src/services/index.ts"
     },
     {
-      "id": 13,
-      "name": ".eslintrc.js",
+      "id": 11,
+      "name": "GenerateJWT.ts",
       "category": "file",
-      "path": "testbe/.eslintrc.js"
+      "path": "testbe/src/utils/GenerateJWT.ts",
+      "dependencies": [
+        "jsonwebtoken"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Hash.ts",
+      "category": "file",
+      "path": "testbe/src/utils/Hash.ts",
+      "dependencies": [
+        "bcryptjs"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "UserController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/UserController.ts",
+      "dependencies": [
+        "@prisma/client"
+      ]
     },
     {
       "id": 14,
@@ -136,9 +132,13 @@
     },
     {
       "id": 15,
-      "name": "IUser.ts",
+      "name": "AuthService.ts",
       "category": "file",
-      "path": "testbe/src/interfaces/IUser.ts"
+      "path": "testbe/src/services/AuthService.ts",
+      "dependencies": [
+        "routing-controllers",
+        "bcryptjs"
+      ]
     },
     {
       "id": 16,
@@ -147,17 +147,17 @@
     },
     {
       "id": 17,
-      "name": "dotenv",
+      "name": "@prisma/client",
       "category": "library"
     },
     {
       "id": 18,
-      "name": "path",
-      "category": "dependency"
+      "name": "jsonwebtoken",
+      "category": "library"
     },
     {
       "id": 19,
-      "name": "express",
+      "name": "bcryptjs",
       "category": "library"
     },
     {
@@ -167,34 +167,34 @@
     },
     {
       "id": 21,
-      "name": "@prisma/client",
+      "name": "reflect-metadata",
       "category": "library"
     },
     {
       "id": 22,
-      "name": "bcryptjs",
+      "name": "express",
       "category": "library"
     },
     {
       "id": 23,
-      "name": "jsonwebtoken",
-      "category": "library"
+      "name": "path",
+      "category": "dependency"
     },
     {
       "id": 24,
-      "name": "reflect-metadata",
+      "name": "dotenv",
       "category": "library"
     }
   ],
   "links": [
     {
-      "source": 3,
-      "target": 20,
+      "source": 2,
+      "target": 21,
       "relation": "depends"
     },
     {
       "source": 3,
-      "target": 23,
+      "target": 20,
       "relation": "depends"
     },
     {
@@ -204,42 +204,52 @@
     },
     {
       "source": 5,
+      "target": 22,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 23,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 22,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
       "target": 20,
       "relation": "depends"
     },
     {
       "source": 6,
-      "target": 21,
-      "relation": "depends"
-    },
-    {
-      "source": 7,
-      "target": 19,
-      "relation": "depends"
-    },
-    {
-      "source": 8,
-      "target": 20,
-      "relation": "depends"
-    },
-    {
-      "source": 8,
-      "target": 22,
-      "relation": "depends"
-    },
-    {
-      "source": 9,
-      "target": 23,
-      "relation": "depends"
-    },
-    {
-      "source": 10,
       "target": 24,
       "relation": "depends"
     },
     {
-      "source": 11,
+      "source": 8,
       "target": 16,
+      "relation": "depends"
+    },
+    {
+      "source": 9,
+      "target": 17,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 18,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 19,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 17,
       "relation": "depends"
     },
     {
@@ -248,33 +258,23 @@
       "relation": "depends"
     },
     {
-      "source": 0,
-      "target": 17,
+      "source": 15,
+      "target": 20,
       "relation": "depends"
     },
     {
-      "source": 0,
-      "target": 18,
-      "relation": "depends"
-    },
-    {
-      "source": 0,
+      "source": 15,
       "target": 19,
       "relation": "depends"
     },
     {
-      "source": 0,
+      "source": 1,
       "target": 20,
       "relation": "depends"
     },
     {
       "source": 1,
-      "target": 21,
-      "relation": "depends"
-    },
-    {
-      "source": 2,
-      "target": 22,
+      "target": 18,
       "relation": "depends"
     }
   ]

@@ -5,6 +5,8 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <stdbool.h>
+#include <sys/stat.h>
+#include <pthread.h> // Added for threading
 
 #define PORT 3000
 #define BUFFER_SIZE 8192
@@ -29,12 +31,85 @@ ReceivePayload parse_payload(const char *body);
 bool clone_repository(ReceivePayload *payload);
 void free_payload(ReceivePayload payload);
 
+// New connection handler function
+static void *handle_connection(void *arg)
+{
+    int new_socket = *(int *)arg;
+    free(arg);
+
+    char buffer[BUFFER_SIZE] = {0};
+    int bytes_read = read(new_socket, buffer, BUFFER_SIZE);
+    if (bytes_read < 0)
+    {
+        // minimal error message
+        perror("read failed");
+        close(new_socket);
+        return NULL;
+    }
+
+    // Process POST /receive
+    if (strncmp(buffer, "POST /receive HTTP/1.", 20) == 0)
+    {
+        // minimal logging for production
+        // Find the Content-Length header
+        char *content_length_str = strstr(buffer, "Content-Length:");
+        int content_length = content_length_str ? atoi(content_length_str + 15) : 0;
+
+        // Find the request body (after the header)
+        char *body = strstr(buffer, "\r\n\r\n");
+        if (body && content_length > 0)
+        {
+            body += 4;
+            RequestResult result = handle_receive_request(body);
+
+            if (result.success)
+            {
+                if (result.graph_data)
+                {
+                    char response_header[BUFFER_SIZE];
+                    sprintf(response_header, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Length: %ld\r\n\r\n", strlen(result.graph_data));
+                    send(new_socket, response_header, strlen(response_header), 0);
+                    send(new_socket, result.graph_data, strlen(result.graph_data), 0);
+                    free(result.graph_data);
+                }
+                else
+                {
+                    char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Length: 7\r\n\r\nSuccess";
+                    send(new_socket, response, strlen(response), 0);
+                }
+            }
+            else
+            {
+                char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Length: 21\r\n\r\nFailed to process repo";
+                send(new_socket, response, strlen(response), 0);
+            }
+        }
+        else
+        {
+            char *response = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Length: 14\r\n\r\nMissing payload";
+            send(new_socket, response, strlen(response), 0);
+        }
+    }
+    else if (strncmp(buffer, "OPTIONS /receive HTTP/1.", 23) == 0)
+    {
+        char *response = "HTTP/1.1 204 No Content\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\n\r\n";
+        send(new_socket, response, strlen(response), 0);
+    }
+    else
+    {
+        char *response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 9\r\n\r\nNot Found";
+        send(new_socket, response, strlen(response), 0);
+    }
+
+    close(new_socket);
+    return NULL;
+}
+
 int main()
 {
-    int server_fd, new_socket;
+    int server_fd;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
-    char buffer[BUFFER_SIZE] = {0};
 
     // Create socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
@@ -43,7 +118,6 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-    // Set socket options to reuse address
     int opt = 1;
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
     {
@@ -55,104 +129,43 @@ int main()
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(PORT);
 
-    // Bind the socket to the port
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0)
     {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
 
-    // Listen for incoming connections
-    if (listen(server_fd, 3) < 0)
+    // Increase backlog to 1000
+    if (listen(server_fd, 1000) < 0)
     {
         perror("listen failed");
         exit(EXIT_FAILURE);
     }
 
-    printf("HTTP server listening on port %d...\n", PORT);
+    // Reduced server startup log message
+    printf("Server listening on port %d...\n", PORT);
 
     while (1)
     {
-        // Accept an incoming connection
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0)
+        int *new_sock = malloc(sizeof(int));
+        if (!new_sock)
+            continue;
+        *new_sock = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen);
+        if (*new_sock < 0)
         {
             perror("accept failed");
+            free(new_sock);
             continue;
         }
-
-        // Read the incoming request
-        memset(buffer, 0, BUFFER_SIZE);
-        int bytes_read = read(new_socket, buffer, BUFFER_SIZE);
-        if (bytes_read < 0)
+        pthread_t tid;
+        if (pthread_create(&tid, NULL, handle_connection, new_sock) != 0)
         {
-            perror("read failed");
-            close(new_socket);
+            perror("pthread_create failed");
+            close(*new_sock);
+            free(new_sock);
             continue;
         }
-
-        // Check if this is a POST request to /receive
-        if (strncmp(buffer, "POST /receive HTTP/1.", 20) == 0)
-        {
-            printf("Received POST request to /receive\n");
-
-            // Find the Content-Length header
-            char *content_length_str = strstr(buffer, "Content-Length:");
-            int content_length = 0;
-
-            if (content_length_str)
-            {
-                content_length = atoi(content_length_str + 15); // Skip "Content-Length: "
-            }
-
-            // Find the request body (after the double newline)
-            char *body = strstr(buffer, "\r\n\r\n");
-            if (body && content_length > 0)
-            {
-                body += 4; // Move past the \r\n\r\n
-
-                RequestResult result = handle_receive_request(body);
-
-                if (result.success)
-                {
-                    // If we have graph data, send it in the response
-                    if (result.graph_data)
-                    {
-                        char response_header[BUFFER_SIZE];
-                        sprintf(response_header, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: %ld\r\n\r\n",
-                                strlen(result.graph_data));
-                        send(new_socket, response_header, strlen(response_header), 0);
-                        send(new_socket, result.graph_data, strlen(result.graph_data), 0);
-                        free(result.graph_data); // Free the graph data
-                    }
-                    else
-                    {
-                        // Send a success response without graph data
-                        char *response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 7\r\n\r\nSuccess";
-                        send(new_socket, response, strlen(response), 0);
-                    }
-                }
-                else
-                {
-                    // Send an error response
-                    char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nContent-Length: 21\r\n\r\nFailed to process repo";
-                    send(new_socket, response, strlen(response), 0);
-                }
-            }
-            else
-            {
-                // No body found or no content length
-                char *response = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\nContent-Length: 14\r\n\r\nMissing payload";
-                send(new_socket, response, strlen(response), 0);
-            }
-        }
-        else
-        {
-            // Not a POST request to /receive
-            char *response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 9\r\n\r\nNot Found";
-            send(new_socket, response, strlen(response), 0);
-        }
-
-        close(new_socket);
+        pthread_detach(tid);
     }
 
     close(server_fd);
@@ -239,181 +252,144 @@ ReceivePayload parse_payload(const char *body)
 
 bool clone_repository(ReceivePayload *payload)
 {
-    printf("Cloning repository: %s\n", payload->github_link);
-
-    // Construct the git command
+    // Reduced logging messages
+    // Extract repository name as before...
     char git_command[BUFFER_SIZE] = {0};
     char repo_name[BUFFER_SIZE] = {0};
 
-    // Extract repository name from URL for possible future use
     const char *slash = strrchr(payload->github_link, '/');
     if (slash)
     {
         const char *dot_git = strstr(slash, ".git");
         if (dot_git)
         {
-            // Copy from slash+1 to dot_git
             strncpy(repo_name, slash + 1, dot_git - (slash + 1));
-            repo_name[dot_git - (slash + 1)] = '\0'; // Ensure null termination
+            repo_name[dot_git - (slash + 1)] = '\0';
         }
         else
         {
-            // Just use everything after the last slash
             strcpy(repo_name, slash + 1);
         }
     }
     else
     {
-        // Fallback - use the full URL as name (not ideal)
         strcpy(repo_name, payload->github_link);
     }
 
-    if (payload->personal_access_token && strlen(payload->personal_access_token) > 0)
+    struct stat st = {0};
+    if (stat(repo_name, &st) == 0 && S_ISDIR(st.st_mode))
     {
-        // If we have a token, use HTTPS with token in URL
-        char url_with_token[BUFFER_SIZE] = {0};
-
-        const char *https_prefix = "https://";
-        char *url_start = payload->github_link;
-
-        // If URL starts with https://, skip that part for insertion
-        if (strncmp(payload->github_link, https_prefix, strlen(https_prefix)) == 0)
+        // Pulling updates quietly
+        char cd_command[BUFFER_SIZE] = {0};
+        sprintf(cd_command, "cd %s && git pull -q", repo_name);
+        int pull_result = system(cd_command);
+        if (pull_result != 0)
         {
-            url_start = payload->github_link + strlen(https_prefix);
-            sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, url_start);
-        }
-        else
-        {
-            sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, payload->github_link);
-        }
-
-        if (payload->branch && strlen(payload->branch) > 0)
-        {
-            sprintf(git_command, "git -c core.sharedRepository=group clone -b %s %s",
-                    payload->branch, url_with_token);
-        }
-        else
-        {
-            sprintf(git_command, "git -c core.sharedRepository=group clone %s", url_with_token);
+            // Only log a warning if pull fails
+            fprintf(stderr, "Warning: Failed to pull latest changes. Exit code: %d\n", pull_result);
         }
     }
     else
     {
-        // No token, use SSH or plain HTTPS
-        if (payload->branch && strlen(payload->branch) > 0)
+        // Cloning repository quietly (-q flag added)
+        if (payload->personal_access_token && strlen(payload->personal_access_token) > 0)
         {
-            sprintf(git_command, "git -c core.sharedRepository=group clone -b %s %s",
-                    payload->branch, payload->github_link);
+            char url_with_token[BUFFER_SIZE] = {0};
+            const char *https_prefix = "https://";
+            char *url_start = payload->github_link;
+            if (strncmp(payload->github_link, https_prefix, strlen(https_prefix)) == 0)
+            {
+                url_start = payload->github_link + strlen(https_prefix);
+                sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, url_start);
+            }
+            else
+            {
+                sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, payload->github_link);
+            }
+
+            if (payload->branch && strlen(payload->branch) > 0)
+            {
+                sprintf(git_command, "git -q -c core.sharedRepository=group clone -b %s %s", payload->branch, url_with_token);
+            }
+            else
+            {
+                sprintf(git_command, "git -q -c core.sharedRepository=group clone %s", url_with_token);
+            }
         }
         else
         {
-            sprintf(git_command, "git -c core.sharedRepository=group clone %s", payload->github_link);
+            if (payload->branch && strlen(payload->branch) > 0)
+            {
+                sprintf(git_command, "git -q -c core.sharedRepository=group clone -b %s %s", payload->branch, payload->github_link);
+            }
+            else
+            {
+                sprintf(git_command, "git -q -c core.sharedRepository=group clone %s", payload->github_link);
+            }
+        }
+
+        // Redact token from logs if any (silent log)
+        char *redacted_command = strdup(git_command);
+        if (payload->personal_access_token)
+        {
+            char *token_pos = strstr(redacted_command, payload->personal_access_token);
+            if (token_pos)
+            {
+                for (int i = 0; i < strlen(payload->personal_access_token); i++)
+                {
+                    token_pos[i] = '*';
+                }
+            }
+        }
+        // Optionally log only on error:
+        // fprintf(stderr, "Executing: %s\n", redacted_command);
+        free(redacted_command);
+
+        int result = system(git_command);
+        if (result != 0)
+        {
+            fprintf(stderr, "Failed to clone repository. Exit code: %d\n", result);
+            return false;
         }
     }
 
-    // Redact token from logs
-    char *redacted_command = strdup(git_command);
-    if (payload->personal_access_token)
+    // Execute codeflow silently
+    char codeflow_command[BUFFER_SIZE] = {0};
+    sprintf(codeflow_command, "./goservice/codeflow %s", repo_name);
+    int codeflow_result = system(codeflow_command);
+    if (codeflow_result == 0)
     {
-        char *token_pos = strstr(redacted_command, payload->personal_access_token);
-        if (token_pos)
+        FILE *graph_file = fopen("graphdata.json", "r");
+        if (graph_file == NULL)
         {
-            for (int i = 0; i < strlen(payload->personal_access_token); i++)
-            {
-                token_pos[i] = '*';
-            }
+            return true;
         }
-    }
-
-    printf("Executing: %s\n", redacted_command);
-    free(redacted_command);
-
-    int result = system(git_command);
-
-    if (result == 0)
-    {
-        printf("Repository cloned successfully\n");
-
-        // Execute the codeflow executable after successful clone
-        char codeflow_command[BUFFER_SIZE] = {0};
-        sprintf(codeflow_command, "./goservice/codeflow %s", repo_name);
-
-        printf("Executing codeflow with repo: %s\n", repo_name);
-        int codeflow_result = system(codeflow_command);
-
-        if (codeflow_result == 0)
+        fseek(graph_file, 0, SEEK_END);
+        long graph_size = ftell(graph_file);
+        fseek(graph_file, 0, SEEK_SET);
+        char *graph_data = malloc(graph_size + 1);
+        if (graph_data == NULL)
         {
-            printf("Codeflow executed successfully\n");
-
-            // Read the graphdata.json file
-            FILE *graph_file = fopen("graphdata.json", "r");
-            if (graph_file == NULL)
-            {
-                printf("Failed to open graphdata.json\n");
-                // Clean up repository folder even if we can't read the graph data
-                char rm_command[BUFFER_SIZE];
-                sprintf(rm_command, "rm -rf %s", repo_name);
-                system(rm_command);
-                return true; // Still return success since clone and codeflow worked
-            }
-
-            // Get file size
-            fseek(graph_file, 0, SEEK_END);
-            long graph_size = ftell(graph_file);
-            fseek(graph_file, 0, SEEK_SET);
-
-            // Read file content
-            char *graph_data = (char *)malloc(graph_size + 1);
-            if (graph_data == NULL)
-            {
-                printf("Failed to allocate memory for graph data\n");
-                fclose(graph_file);
-                // Clean up repository folder
-                char rm_command[BUFFER_SIZE];
-                sprintf(rm_command, "rm -rf %s", repo_name);
-                system(rm_command);
-                return true;
-            }
-
-            size_t read_size = fread(graph_data, 1, graph_size, graph_file);
             fclose(graph_file);
-
-            if (read_size != graph_size)
-            {
-                printf("Failed to read complete graph data\n");
-                free(graph_data);
-                // Clean up repository folder
-                char rm_command[BUFFER_SIZE];
-                sprintf(rm_command, "rm -rf %s", repo_name);
-                system(rm_command);
-                return true;
-            }
-
-            graph_data[graph_size] = '\0'; // Ensure null termination
-
-            // Store graph data to be returned in the HTTP response
-            payload->graph_data = strdup(graph_data);
-            free(graph_data);
-
-            // Clean up repository folder
-            char rm_command[BUFFER_SIZE];
-            sprintf(rm_command, "rm -rf %s", repo_name);
-            printf("Cleaning up repository: %s\n", repo_name);
-            system(rm_command);
+            return true;
         }
-        else
+        size_t read_size = fread(graph_data, 1, graph_size, graph_file);
+        fclose(graph_file);
+        if (read_size != graph_size)
         {
-            printf("Failed to execute codeflow. Exit code: %d\n", codeflow_result);
-            // Note: We still return true since the clone was successful
+            free(graph_data);
+            return true;
         }
-
-        return true;
+        graph_data[graph_size] = '\0';
+        payload->graph_data = strdup(graph_data);
+        free(graph_data);
     }
     else
     {
-        printf("Failed to clone repository. Exit code: %d\n", result);
-        return false;
+        fprintf(stderr, "Failed to execute codeflow. Exit code: %d\n", codeflow_result);
     }
+
+    return true;
 }
 
 void free_payload(ReceivePayload payload)

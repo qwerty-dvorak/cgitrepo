@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <stdbool.h>
 #include <sys/stat.h>
-#include <pthread.h> // Added for threading
+#include <pthread.h> 
 
 #define PORT 3000
 #define BUFFER_SIZE 8192

@@ -1,0 +1,661 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "metadata.ts",
+      "category": "file",
+      "path": "webproject/src/metadata.ts"
+    },
+    {
+      "id": 1,
+      "name": "map.ts",
+      "category": "file",
+      "path": "webproject/src/stores/map.ts",
+      "dependencies": [
+        "zustand"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "generateRows.ts",
+      "category": "file",
+      "path": "webproject/src/utilities/generateRows.ts",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Game.tsx",
+      "category": "file",
+      "path": "webproject/src/Game.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Car.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Car.tsx",
+      "dependencies": [
+        "three",
+        "react"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Controls.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Controls.tsx"
+    },
+    {
+      "id": 6,
+      "name": "GameMap.tsx",
+      "category": "file",
+      "path": "webproject/src/components/GameMap.tsx"
+    },
+    {
+      "id": 7,
+      "name": "GameRow.tsx",
+      "category": "file",
+      "path": "webproject/src/components/GameRow.tsx"
+    },
+    {
+      "id": 8,
+      "name": "Road.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Road.tsx"
+    },
+    {
+      "id": 9,
+      "name": "difficultyStore.ts",
+      "category": "file",
+      "path": "webproject/src/stores/difficultyStore.ts"
+    },
+    {
+      "id": 10,
+      "name": "eslint.config.js",
+      "category": "file",
+      "path": "webproject/eslint.config.js",
+      "dependencies": [
+        "@eslint/js",
+        "globals",
+        "eslint-plugin-react-hooks",
+        "eslint-plugin-react-refresh",
+        "typescript-eslint"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "DirectionalLight.tsx",
+      "category": "file",
+      "path": "webproject/src/components/DirectionalLight.tsx",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Leaderboard.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Leaderboard.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "constants.ts",
+      "category": "file",
+      "path": "webproject/src/constants.ts"
+    },
+    {
+      "id": 14,
+      "name": "player.ts",
+      "category": "file",
+      "path": "webproject/src/stores/player.ts"
+    },
+    {
+      "id": 15,
+      "name": "score.ts",
+      "category": "file",
+      "path": "webproject/src/stores/score.ts"
+    },
+    {
+      "id": 16,
+      "name": "types.ts",
+      "category": "file",
+      "path": "webproject/src/types.ts",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "calculateFinalPosition.ts",
+      "category": "file",
+      "path": "webproject/src/utilities/calculateFinalPosition.ts"
+    },
+    {
+      "id": 18,
+      "name": "App.tsx",
+      "category": "file",
+      "path": "webproject/src/App.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "AudioControls.tsx",
+      "category": "file",
+      "path": "webproject/src/components/AudioControls.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "CarLane.tsx",
+      "category": "file",
+      "path": "webproject/src/components/CarLane.tsx"
+    },
+    {
+      "id": 21,
+      "name": "Player.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Player.tsx",
+      "dependencies": [
+        "three",
+        "@react-three/drei",
+        "react",
+        "@react-three/fiber"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "usePlayerAnimation.ts",
+      "category": "file",
+      "path": "webproject/src/hooks/usePlayerAnimation.ts",
+      "dependencies": [
+        "three",
+        "@react-three/fiber"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "useVehicleAnimation.ts",
+      "category": "file",
+      "path": "webproject/src/hooks/useVehicleAnimation.ts",
+      "dependencies": [
+        "three",
+        "@react-three/fiber"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "AudioManager.tsx",
+      "category": "file",
+      "path": "webproject/src/components/AudioManager.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Forest.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Forest.tsx"
+    },
+    {
+      "id": 26,
+      "name": "HomeScreen.tsx",
+      "category": "file",
+      "path": "webproject/src/components/HomeScreen.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "SfxManager.tsx",
+      "category": "file",
+      "path": "webproject/src/components/SfxManager.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "main.tsx",
+      "category": "file",
+      "path": "webproject/src/main.tsx",
+      "dependencies": [
+        "react",
+        "react-dom/client"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "gameState.ts",
+      "category": "file",
+      "path": "webproject/src/stores/gameState.ts"
+    },
+    {
+      "id": 30,
+      "name": "themeStore.ts",
+      "category": "file",
+      "path": "webproject/src/stores/themeStore.ts"
+    },
+    {
+      "id": 31,
+      "name": "PauseMenu.tsx",
+      "category": "file",
+      "path": "webproject/src/components/PauseMenu.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "camera.ts",
+      "category": "file",
+      "path": "webproject/src/stores/camera.ts",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "endsUpInValidPosition.ts",
+      "category": "file",
+      "path": "webproject/src/utilities/endsUpInValidPosition.ts",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "vite.config.ts",
+      "category": "file",
+      "path": "webproject/vite.config.ts",
+      "dependencies": [
+        "@vitejs/plugin-react-swc",
+        "vite"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Wheel.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Wheel.tsx"
+    },
+    {
+      "id": 36,
+      "name": "hitTest.ts",
+      "category": "file",
+      "path": "webproject/src/hitTest.ts",
+      "dependencies": [
+        "three"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "useEventListeners.ts",
+      "category": "file",
+      "path": "webproject/src/hooks/useEventListeners.ts",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "leaderboard.ts",
+      "category": "file",
+      "path": "webproject/src/stores/leaderboard.ts"
+    },
+    {
+      "id": 39,
+      "name": "vehicles.ts",
+      "category": "file",
+      "path": "webproject/src/stores/vehicles.ts",
+      "dependencies": [
+        "three",
+        "zustand"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "vite-env.d.ts",
+      "category": "file",
+      "path": "webproject/src/vite-env.d.ts"
+    },
+    {
+      "id": 41,
+      "name": "Scene.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Scene.tsx",
+      "dependencies": [
+        "@react-three/fiber"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Tree.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Tree.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "audioState.ts",
+      "category": "file",
+      "path": "webproject/src/stores/audioState.ts"
+    },
+    {
+      "id": 44,
+      "name": "sfxState.ts",
+      "category": "file",
+      "path": "webproject/src/stores/sfxState.ts"
+    },
+    {
+      "id": 45,
+      "name": "gameInitializer.ts",
+      "category": "file",
+      "path": "webproject/src/utilities/gameInitializer.ts"
+    },
+    {
+      "id": 46,
+      "name": "Grass.tsx",
+      "category": "file",
+      "path": "webproject/src/components/Grass.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "NameInputDialog.tsx",
+      "category": "file",
+      "path": "webproject/src/components/NameInputDialog.tsx",
+      "dependencies": [
+        "react"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "react",
+      "category": "library"
+    },
+    {
+      "id": 49,
+      "name": "zustand",
+      "category": "library"
+    },
+    {
+      "id": 50,
+      "name": "three",
+      "category": "library"
+    },
+    {
+      "id": 51,
+      "name": "@eslint/js",
+      "category": "library"
+    },
+    {
+      "id": 52,
+      "name": "globals",
+      "category": "library"
+    },
+    {
+      "id": 53,
+      "name": "eslint-plugin-react-hooks",
+      "category": "library"
+    },
+    {
+      "id": 54,
+      "name": "eslint-plugin-react-refresh",
+      "category": "library"
+    },
+    {
+      "id": 55,
+      "name": "typescript-eslint",
+      "category": "library"
+    },
+    {
+      "id": 56,
+      "name": "@react-three/drei",
+      "category": "library"
+    },
+    {
+      "id": 57,
+      "name": "@react-three/fiber",
+      "category": "library"
+    },
+    {
+      "id": 58,
+      "name": "react-dom/client",
+      "category": "dependency"
+    },
+    {
+      "id": 59,
+      "name": "@vitejs/plugin-react-swc",
+      "category": "library"
+    },
+    {
+      "id": 60,
+      "name": "vite",
+      "category": "library"
+    }
+  ],
+  "links": [
+    {
+      "source": 10,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 52,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 53,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 55,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 16,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 19,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 56,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 57,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 57,
+      "relation": "depends"
+    },
+    {
+      "source": 23,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 23,
+      "target": 57,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 26,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 27,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 58,
+      "relation": "depends"
+    },
+    {
+      "source": 31,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 32,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 33,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 34,
+      "target": 59,
+      "relation": "depends"
+    },
+    {
+      "source": 34,
+      "target": 60,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 37,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 39,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 39,
+      "target": 49,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 57,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 49,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 48,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 48,
+      "relation": "depends"
+    }
+  ]
+}

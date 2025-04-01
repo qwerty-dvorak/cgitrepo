@@ -1,0 +1,2031 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "user_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/user_crud.py",
+      "dependencies": [
+        "database",
+        "sqlalchemy.orm",
+        "fastapi",
+        "schemas"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "models.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/database/models.py",
+      "dependencies": [
+        "uuid",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "sqlalchemy.ext.declarative"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "club_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/club_crud.py",
+      "dependencies": [
+        "schemas.club_schema",
+        "database.models",
+        "database",
+        "sqlalchemy.orm"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "customResponse_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/customResponse_crud.py",
+      "dependencies": [
+        "database.session",
+        "schemas.customResponse_schema",
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.models"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "event_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/event_crud.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database",
+        "schemas"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ClubAdmin_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/ClubAdmin_routes.py",
+      "dependencies": [
+        "schemas.ClubAdmin_schema",
+        "crud.ClubAdmin_crud",
+        "fastapi",
+        "sqlalchemy.orm",
+        "typing",
+        "uuid",
+        "database",
+        "database.session"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "team_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/team_route.py",
+      "dependencies": [
+        "typing",
+        "database.session",
+        "database",
+        "schemas",
+        "crud",
+        "fastapi",
+        "sqlalchemy.orm"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "user_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/user_routes.py",
+      "dependencies": [
+        "schemas",
+        "database",
+        "fastapi",
+        "sqlalchemy.ext.asyncio",
+        "typing",
+        "crud"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "club_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/club_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "customResponse_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/customResponse_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "customResponse_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/customResponse_routes.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "schemas.customResponse_schema",
+        "crud.customResponse_crud"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "photo_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/photo_routes.py",
+      "dependencies": [
+        "crud.photo_crud",
+        "fastapi",
+        "sqlalchemy.orm",
+        "typing",
+        "schemas.photo_schema",
+        "database.session"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "registration_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/registration_route.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "schemas.registration_schema",
+        "crud.registration_crud",
+        "logging"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "teamCreation.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/team/teamCreation.py",
+      "dependencies": [
+        "fastapi",
+        "schemas.team.teamCreationSchema",
+        "schemas.team_schema",
+        "schemas.member_of_schema",
+        "sqlalchemy.orm",
+        "database.session",
+        "secrets",
+        "crud.team_crud",
+        "crud.member_of_crud",
+        "database.models"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "customInput_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/customInput_schema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "photo_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/photo_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "registration_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/registration_schema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "teamJoinSchema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/team/teamJoinSchema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "member_of_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/member_of_crud.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.models",
+        "database.session",
+        "schemas.member_of_schema"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "participants_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/admin_participants_check/participants_route.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "database"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "club_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/club_routes.py",
+      "dependencies": [
+        "database.session",
+        "schemas.club_schema",
+        "crud",
+        "sqlalchemy",
+        "database.models",
+        "pydantic",
+        "fastapi",
+        "sqlalchemy.ext.declarative",
+        "sqlalchemy.orm"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "studentProfile_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/studentProfile_routes.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "database.models",
+        "crud",
+        "schemas.student_schema"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "teamJoin.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/team/teamJoin.py",
+      "dependencies": [
+        "schemas.team.teamJoinSchema",
+        "schemas.member_of_schema",
+        "routes.team.teamCreation",
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "database.models",
+        "crud.member_of_crud"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "team_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/team_schema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "member_of_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/member_of_routes.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session",
+        "schemas.member_of_schema",
+        "crud.member_of_crud"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "teamCreationSchema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/team/teamCreationSchema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "user_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/user_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "add_unique_reg_constraint.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/alembic/version/add_unique_reg_constraint.py"
+    },
+    {
+      "id": 28,
+      "name": "main.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/main.py",
+      "dependencies": [
+        "routes.student_route",
+        "routes.home.home_route",
+        "fastapi",
+        "routes.club_routes",
+        "routes.customResponse_routes",
+        "routes.customInput_routes",
+        "routes.team.teamCreation",
+        "routes.event_routes",
+        "routes.team_route",
+        "routes.event.get_event_auth_route",
+        "routes.registration_route",
+        "routes.participants",
+        "routes.studentProfile_routes",
+        "routes.member_of_routes",
+        "routes.user_routes"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "customInput_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/customInput_routes.py",
+      "dependencies": [
+        "schemas.customInput_schema",
+        "crud.customInput_crud",
+        "fastapi",
+        "sqlalchemy.orm",
+        "database.session"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "get_event_auth_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/event/get_event_auth_route.py",
+      "dependencies": [
+        "fastapi",
+        "sqlalchemy.orm",
+        "typing",
+        "schemas",
+        "database",
+        "database.session"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "participants.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/participants.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database.session",
+        "database",
+        "fastapi"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "event_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/event_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing",
+        "datetime"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "member_of_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/member_of_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "student_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/student_schema.py",
+      "dependencies": [
+        "pydantic",
+        "typing"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "home_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/home/home_route.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "crud.home.home_crud",
+        "database.session",
+        "schemas.Landing_Page.event_photo_response_schema",
+        "typing",
+        "fastapi"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "student_route.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/student_route.py",
+      "dependencies": [
+        "database",
+        "database.session",
+        "schemas.student_schema",
+        "fastapi",
+        "sqlalchemy.orm",
+        "crud.student_crud"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "ClubAdmin_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/ClubAdmin_schema.py",
+      "dependencies": [
+        "pydantic",
+        "uuid"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "event_photo_response_schema.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/schemas/Landing_Page/event_photo_response_schema.py",
+      "dependencies": [
+        "pydantic"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "f6e41a04b085_first_commit.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/alembic/versions/f6e41a04b085_first_commit.py",
+      "dependencies": [
+        "typing",
+        "alembic",
+        "sqlalchemy"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "home_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/home/home_crud.py",
+      "dependencies": [
+        "typing",
+        "sqlalchemy.orm",
+        "sqlalchemy.exc",
+        "database",
+        "schemas.Landing_Page.event_photo_response_schema",
+        "fastapi",
+        "datetime"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "registration_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/registration_crud.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database",
+        "schemas.registration_schema",
+        "uuid",
+        "fastapi",
+        "sqlalchemy.exc"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "session.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/database/session.py",
+      "dependencies": [
+        "database.models",
+        "datetime",
+        "os",
+        "sqlalchemy",
+        "sqlalchemy.orm",
+        "dotenv"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "event_routes.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/routes/event_routes.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "crud",
+        "database",
+        "database.session",
+        "schemas.event_schema",
+        "fastapi"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "env.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/alembic/env.py",
+      "dependencies": [
+        "logging.config",
+        "sqlalchemy",
+        "alembic",
+        "database.models"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "ClubAdmin_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/ClubAdmin_crud.py",
+      "dependencies": [
+        "schemas.ClubAdmin_schema",
+        "sqlalchemy.orm",
+        "database"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "customInput_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/customInput_crud.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database.models",
+        "database.session",
+        "schemas.customInput_schema",
+        "fastapi"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "photo_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/photo_crud.py",
+      "dependencies": [
+        "schemas.photo_schema",
+        "uuid",
+        "shutil",
+        "pathlib",
+        "sqlalchemy.orm",
+        "database.models"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "student_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/student_crud.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database",
+        "schemas.student_schema"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "team_crud.py",
+      "category": "file",
+      "path": "sonam-gupta-backend/crud/team_crud.py",
+      "dependencies": [
+        "sqlalchemy.orm",
+        "database",
+        "database.models"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "pydantic",
+      "category": "dependency"
+    },
+    {
+      "id": 51,
+      "name": "typing",
+      "category": "dependency"
+    },
+    {
+      "id": 52,
+      "name": "routes.student_route",
+      "category": "dependency"
+    },
+    {
+      "id": 53,
+      "name": "routes.home.home_route",
+      "category": "dependency"
+    },
+    {
+      "id": 54,
+      "name": "fastapi",
+      "category": "dependency"
+    },
+    {
+      "id": 55,
+      "name": "routes.club_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 56,
+      "name": "routes.customResponse_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 57,
+      "name": "routes.customInput_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 58,
+      "name": "routes.team.teamCreation",
+      "category": "dependency"
+    },
+    {
+      "id": 59,
+      "name": "routes.event_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 60,
+      "name": "routes.team_route",
+      "category": "dependency"
+    },
+    {
+      "id": 61,
+      "name": "routes.event.get_event_auth_route",
+      "category": "dependency"
+    },
+    {
+      "id": 62,
+      "name": "routes.registration_route",
+      "category": "dependency"
+    },
+    {
+      "id": 63,
+      "name": "routes.participants",
+      "category": "dependency"
+    },
+    {
+      "id": 64,
+      "name": "routes.studentProfile_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 65,
+      "name": "routes.member_of_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 66,
+      "name": "routes.user_routes",
+      "category": "dependency"
+    },
+    {
+      "id": 67,
+      "name": "schemas.customInput_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 68,
+      "name": "crud.customInput_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 69,
+      "name": "sqlalchemy.orm",
+      "category": "dependency"
+    },
+    {
+      "id": 70,
+      "name": "database.session",
+      "category": "dependency"
+    },
+    {
+      "id": 71,
+      "name": "schemas",
+      "category": "dependency"
+    },
+    {
+      "id": 72,
+      "name": "database",
+      "category": "dependency"
+    },
+    {
+      "id": 73,
+      "name": "datetime",
+      "category": "dependency"
+    },
+    {
+      "id": 74,
+      "name": "crud.home.home_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 75,
+      "name": "schemas.Landing_Page.event_photo_response_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 76,
+      "name": "schemas.student_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 77,
+      "name": "crud.student_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 78,
+      "name": "uuid",
+      "category": "dependency"
+    },
+    {
+      "id": 79,
+      "name": "alembic",
+      "category": "dependency"
+    },
+    {
+      "id": 80,
+      "name": "sqlalchemy",
+      "category": "dependency"
+    },
+    {
+      "id": 81,
+      "name": "sqlalchemy.exc",
+      "category": "dependency"
+    },
+    {
+      "id": 82,
+      "name": "schemas.registration_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 83,
+      "name": "database.models",
+      "category": "dependency"
+    },
+    {
+      "id": 84,
+      "name": "os",
+      "category": "dependency"
+    },
+    {
+      "id": 85,
+      "name": "dotenv",
+      "category": "dependency"
+    },
+    {
+      "id": 86,
+      "name": "crud",
+      "category": "dependency"
+    },
+    {
+      "id": 87,
+      "name": "schemas.event_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 88,
+      "name": "logging.config",
+      "category": "dependency"
+    },
+    {
+      "id": 89,
+      "name": "schemas.ClubAdmin_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 90,
+      "name": "schemas.photo_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 91,
+      "name": "shutil",
+      "category": "dependency"
+    },
+    {
+      "id": 92,
+      "name": "pathlib",
+      "category": "dependency"
+    },
+    {
+      "id": 93,
+      "name": "sqlalchemy.ext.declarative",
+      "category": "dependency"
+    },
+    {
+      "id": 94,
+      "name": "schemas.club_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 95,
+      "name": "schemas.customResponse_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 96,
+      "name": "crud.ClubAdmin_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 97,
+      "name": "sqlalchemy.ext.asyncio",
+      "category": "dependency"
+    },
+    {
+      "id": 98,
+      "name": "crud.customResponse_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 99,
+      "name": "crud.photo_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 100,
+      "name": "crud.registration_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 101,
+      "name": "logging",
+      "category": "dependency"
+    },
+    {
+      "id": 102,
+      "name": "schemas.team.teamCreationSchema",
+      "category": "dependency"
+    },
+    {
+      "id": 103,
+      "name": "schemas.team_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 104,
+      "name": "schemas.member_of_schema",
+      "category": "dependency"
+    },
+    {
+      "id": 105,
+      "name": "secrets",
+      "category": "dependency"
+    },
+    {
+      "id": 106,
+      "name": "crud.team_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 107,
+      "name": "crud.member_of_crud",
+      "category": "dependency"
+    },
+    {
+      "id": 108,
+      "name": "schemas.team.teamJoinSchema",
+      "category": "dependency"
+    }
+  ],
+  "links": [
+    {
+      "source": 23,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 104,
+      "relation": "depends"
+    },
+    {
+      "source": 24,
+      "target": 107,
+      "relation": "depends"
+    },
+    {
+      "source": 25,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 26,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 26,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 52,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 53,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 55,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 56,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 57,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 58,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 59,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 60,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 61,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 62,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 63,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 64,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 65,
+      "relation": "depends"
+    },
+    {
+      "source": 28,
+      "target": 66,
+      "relation": "depends"
+    },
+    {
+      "source": 29,
+      "target": 67,
+      "relation": "depends"
+    },
+    {
+      "source": 29,
+      "target": 68,
+      "relation": "depends"
+    },
+    {
+      "source": 29,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 29,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 29,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 71,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 30,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 31,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 31,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 31,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 31,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 32,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 32,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 32,
+      "target": 73,
+      "relation": "depends"
+    },
+    {
+      "source": 33,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 33,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 34,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 34,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 74,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 75,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 35,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 76,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 36,
+      "target": 77,
+      "relation": "depends"
+    },
+    {
+      "source": 37,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 37,
+      "target": 78,
+      "relation": "depends"
+    },
+    {
+      "source": 38,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 39,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 39,
+      "target": 79,
+      "relation": "depends"
+    },
+    {
+      "source": 39,
+      "target": 80,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 81,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 75,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 40,
+      "target": 73,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 82,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 78,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 41,
+      "target": 81,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 73,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 84,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 80,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 42,
+      "target": 85,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 86,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 87,
+      "relation": "depends"
+    },
+    {
+      "source": 43,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 44,
+      "target": 88,
+      "relation": "depends"
+    },
+    {
+      "source": 44,
+      "target": 80,
+      "relation": "depends"
+    },
+    {
+      "source": 44,
+      "target": 79,
+      "relation": "depends"
+    },
+    {
+      "source": 44,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 45,
+      "target": 89,
+      "relation": "depends"
+    },
+    {
+      "source": 45,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 45,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 67,
+      "relation": "depends"
+    },
+    {
+      "source": 46,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 90,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 78,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 91,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 92,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 47,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 48,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 48,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 48,
+      "target": 76,
+      "relation": "depends"
+    },
+    {
+      "source": 49,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 49,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 49,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 71,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 78,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 80,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 93,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 94,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 95,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 71,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 89,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 96,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 78,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 71,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 86,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 71,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 97,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 86,
+      "relation": "depends"
+    },
+    {
+      "source": 8,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 8,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 9,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 9,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 95,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 98,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 99,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 90,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 82,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 100,
+      "relation": "depends"
+    },
+    {
+      "source": 12,
+      "target": 101,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 102,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 103,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 104,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 105,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 106,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 107,
+      "relation": "depends"
+    },
+    {
+      "source": 13,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 14,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 15,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 15,
+      "target": 51,
+      "relation": "depends"
+    },
+    {
+      "source": 16,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 17,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 18,
+      "target": 104,
+      "relation": "depends"
+    },
+    {
+      "source": 19,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 19,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 19,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 19,
+      "target": 72,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 94,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 86,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 80,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 50,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 93,
+      "relation": "depends"
+    },
+    {
+      "source": 20,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 86,
+      "relation": "depends"
+    },
+    {
+      "source": 21,
+      "target": 76,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 108,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 104,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 58,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 54,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 69,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 70,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 83,
+      "relation": "depends"
+    },
+    {
+      "source": 22,
+      "target": 107,
+      "relation": "depends"
+    }
+  ]
+}

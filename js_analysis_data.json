@@ -1,0 +1,244 @@
+[
+  {
+    "file": "testbe/.eslintrc.js",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/app.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "server",
+        "defined_at_line": 7,
+        "transformations": null,
+        "used_in_files": []
+      }
+    ]
+  },
+  {
+    "file": "testbe/src/controllers/AuthController.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/controllers/ExampleController.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/controllers/UserController.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/dtos/CreateUserDto.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/dtos/LoginDto.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/interfaces/IUser.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/middleware/ErrorHandler.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/server/Server.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/services/AuthService.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "userService",
+        "defined_at_line": 22,
+        "transformations": [
+          {
+            "file": "testbe/src/services/AuthService.ts",
+            "line": 22
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "user",
+        "defined_at_line": 23,
+        "transformations": null,
+        "used_in_files": []
+      },
+      {
+        "name": "verifyPassword",
+        "defined_at_line": 31,
+        "transformations": [
+          {
+            "file": "testbe/src/services/AuthService.ts",
+            "line": 31
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "token",
+        "defined_at_line": 39,
+        "transformations": [
+          {
+            "file": "testbe/src/services/AuthService.ts",
+            "line": 39
+          }
+        ],
+        "used_in_files": []
+      }
+    ]
+  },
+  {
+    "file": "testbe/src/services/UserService.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "users",
+        "defined_at_line": 35,
+        "transformations": null,
+        "used_in_files": []
+      },
+      {
+        "name": "user",
+        "defined_at_line": 60,
+        "transformations": null,
+        "used_in_files": []
+      }
+    ]
+  },
+  {
+    "file": "testbe/src/services/index.ts",
+    "functions": null,
+    "variables": null
+  },
+  {
+    "file": "testbe/src/utils/AuthorizationChecker.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "authCheck",
+        "defined_at_line": 14,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/AuthorizationChecker.ts",
+            "line": 14
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "authorization",
+        "defined_at_line": 19,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/AuthorizationChecker.ts",
+            "line": 19
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "token",
+        "defined_at_line": 20,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/AuthorizationChecker.ts",
+            "line": 20
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "userService",
+        "defined_at_line": 33,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/AuthorizationChecker.ts",
+            "line": 33
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "user",
+        "defined_at_line": 34,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/AuthorizationChecker.ts",
+            "line": 34
+          }
+        ],
+        "used_in_files": []
+      }
+    ]
+  },
+  {
+    "file": "testbe/src/utils/GenerateJWT.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "generateJWT",
+        "defined_at_line": 8,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/GenerateJWT.ts",
+            "line": 8
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "payload",
+        "defined_at_line": 12,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/GenerateJWT.ts",
+            "line": 12
+          }
+        ],
+        "used_in_files": []
+      }
+    ]
+  },
+  {
+    "file": "testbe/src/utils/Hash.ts",
+    "functions": null,
+    "variables": [
+      {
+        "name": "hash",
+        "defined_at_line": 8,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/Hash.ts",
+            "line": 8
+          }
+        ],
+        "used_in_files": []
+      },
+      {
+        "name": "salt",
+        "defined_at_line": 9,
+        "transformations": [
+          {
+            "file": "testbe/src/utils/Hash.ts",
+            "line": 9
+          }
+        ],
+        "used_in_files": []
+      }
+    ]
+  }
+]

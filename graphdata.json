@@ -1,0 +1,281 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "Server.ts",
+      "category": "file",
+      "path": "testbe/src/server/Server.ts",
+      "dependencies": [
+        "dotenv",
+        "path",
+        "express",
+        "routing-controllers"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "UserService.ts",
+      "category": "file",
+      "path": "testbe/src/services/UserService.ts",
+      "dependencies": [
+        "@prisma/client"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Hash.ts",
+      "category": "file",
+      "path": "testbe/src/utils/Hash.ts",
+      "dependencies": [
+        "bcryptjs"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "AuthorizationChecker.ts",
+      "category": "file",
+      "path": "testbe/src/utils/AuthorizationChecker.ts",
+      "dependencies": [
+        "routing-controllers",
+        "jsonwebtoken"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "AuthController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/AuthController.ts",
+      "dependencies": [
+        "routing-controllers"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ExampleController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/ExampleController.ts",
+      "dependencies": [
+        "routing-controllers"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "UserController.ts",
+      "category": "file",
+      "path": "testbe/src/controllers/UserController.ts",
+      "dependencies": [
+        "@prisma/client"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "ErrorHandler.ts",
+      "category": "file",
+      "path": "testbe/src/middleware/ErrorHandler.ts",
+      "dependencies": [
+        "express"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "AuthService.ts",
+      "category": "file",
+      "path": "testbe/src/services/AuthService.ts",
+      "dependencies": [
+        "routing-controllers",
+        "bcryptjs"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "GenerateJWT.ts",
+      "category": "file",
+      "path": "testbe/src/utils/GenerateJWT.ts",
+      "dependencies": [
+        "jsonwebtoken"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "app.ts",
+      "category": "file",
+      "path": "testbe/src/app.ts",
+      "dependencies": [
+        "reflect-metadata"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "LoginDto.ts",
+      "category": "file",
+      "path": "testbe/src/dtos/LoginDto.ts",
+      "dependencies": [
+        "class-validator"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "index.ts",
+      "category": "file",
+      "path": "testbe/src/services/index.ts"
+    },
+    {
+      "id": 13,
+      "name": ".eslintrc.js",
+      "category": "file",
+      "path": "testbe/.eslintrc.js"
+    },
+    {
+      "id": 14,
+      "name": "CreateUserDto.ts",
+      "category": "file",
+      "path": "testbe/src/dtos/CreateUserDto.ts",
+      "dependencies": [
+        "class-validator"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "IUser.ts",
+      "category": "file",
+      "path": "testbe/src/interfaces/IUser.ts"
+    },
+    {
+      "id": 16,
+      "name": "class-validator",
+      "category": "library"
+    },
+    {
+      "id": 17,
+      "name": "dotenv",
+      "category": "library"
+    },
+    {
+      "id": 18,
+      "name": "path",
+      "category": "dependency"
+    },
+    {
+      "id": 19,
+      "name": "express",
+      "category": "library"
+    },
+    {
+      "id": 20,
+      "name": "routing-controllers",
+      "category": "library"
+    },
+    {
+      "id": 21,
+      "name": "@prisma/client",
+      "category": "library"
+    },
+    {
+      "id": 22,
+      "name": "bcryptjs",
+      "category": "library"
+    },
+    {
+      "id": 23,
+      "name": "jsonwebtoken",
+      "category": "library"
+    },
+    {
+      "id": 24,
+      "name": "reflect-metadata",
+      "category": "library"
+    }
+  ],
+  "links": [
+    {
+      "source": 3,
+      "target": 20,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 23,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 20,
+      "relation": "depends"
+    },
+    {
+      "source": 5,
+      "target": 20,
+      "relation": "depends"
+    },
+    {
+      "source": 6,
+      "target": 21,
+      "relation": "depends"
+    },
+    {
+      "source": 7,
+      "target": 19,
+      "relation": "depends"
+    },
+    {
+      "source": 8,
+      "target": 20,
+      "relation": "depends"
+    },
+    {
+      "source": 8,
+      "target": 22,
+      "relation": "depends"
+    },
+    {
+      "source": 9,
+      "target": 23,
+      "relation": "depends"
+    },
+    {
+      "source": 10,
+      "target": 24,
+      "relation": "depends"
+    },
+    {
+      "source": 11,
+      "target": 16,
+      "relation": "depends"
+    },
+    {
+      "source": 14,
+      "target": 16,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 17,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 18,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 19,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 20,
+      "relation": "depends"
+    },
+    {
+      "source": 1,
+      "target": 21,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 22,
+      "relation": "depends"
+    }
+  ]
+}

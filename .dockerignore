@@ -1,0 +1,10 @@
+# Exclude unnecessary files and directories from the Docker build context
+.git
+*.o
+*.log
+*.tmp
+*.md
+.DS_Store
+__pycache__/
+.vscode/
+*.swp

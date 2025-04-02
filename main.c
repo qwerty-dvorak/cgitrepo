@@ -66,6 +66,9 @@ static void *handle_connection(void *arg)
         {
             body += 4;
             RequestResult result = handle_receive_request(body);
+            // printf("Request processing result: success=%s, graph data %s\n", 
+            //        result.success ? "true" : "false",
+            //        result.graph_data ? "available" : "not available");
 
             if (result.success)
             {
@@ -418,13 +421,67 @@ RequestResult handle_receive_request(char *request_body)
 
     if (payload.github_link)
     {
-        result.success = clone_repository(&payload);
-        // Save graph data if available
-        if (payload.graph_data)
+        // Get repository name from GitHub link
+        char repo_name[BUFFER_SIZE] = {0};
+        char *last_slash = strrchr(payload.github_link, '/');
+        if (last_slash && *(last_slash + 1) != '\0')
         {
-            result.graph_data = payload.graph_data;
-            payload.graph_data = NULL; // Prevent it from being freed
+            snprintf(repo_name, sizeof(repo_name), "%s", last_slash + 1);
+            // Remove ".git" suffix if present
+            char *dot = strstr(repo_name, ".git");
+            if (dot)
+                *dot = '\0';
         }
+        else
+        {
+            strcpy(repo_name, "repo");
+        }
+
+        // Attempt to clone/update repository (but we don't care about success)
+        clone_repository(&payload);
+
+        // Always attempt to load analysis data file for this repository
+        char graph_filename[BUFFER_SIZE] = {0};
+        snprintf(graph_filename, sizeof(graph_filename), "graphdata_%s.json", repo_name);
+
+        FILE *graph_file = fopen(graph_filename, "r");
+        if (graph_file != NULL)
+        {
+            // Read analysis data file
+            fseek(graph_file, 0, SEEK_END);
+            long file_size = ftell(graph_file);
+            fseek(graph_file, 0, SEEK_SET);
+
+            if (file_size > 0)
+            {
+                char *file_content = malloc(file_size + 1);
+                if (file_content != NULL)
+                {
+                    size_t read_size = fread(file_content, 1, file_size, graph_file);
+                    if (read_size == file_size)
+                    {
+                        file_content[file_size] = '\0';
+                        result.graph_data = strdup(file_content);
+
+                        // Print the first 100 characters (or less) of graph data for debugging
+                        int preview_length = file_size < 100 ? file_size : 100;
+                        printf("Graph data preview (first %d chars): %.100s%s\n",
+                               preview_length, file_content, file_size > 100 ? "..." : "");
+
+                        printf("Returning graphdata_ from file: %s (size: %ld bytes)\n", graph_filename, file_size);
+                    }
+                    free(file_content);
+                }
+            }
+            fclose(graph_file);
+        }
+        else
+        {
+            printf("Graph data file not found: %s\n", graph_filename);
+        }
+
+        // Set proper success value based solely on whether we loaded the graphdata file
+        result.success = (result.graph_data != NULL);
     }
     else
     {
@@ -507,22 +564,70 @@ bool clone_repository(ReceivePayload *payload)
         strcpy(repo_name, "repo");
     }
 
+    // Flag to track if code has changed and we need to run codeflow
+    bool needs_codeflow = false;
+
     // Check if repository directory exists.
     struct stat st = {0};
     if (stat(repo_name, &st) == 0 && S_ISDIR(st.st_mode))
     {
-        char cd_command[BUFFER_SIZE] = {0};
-        sprintf(cd_command, "cd %s && git pull -q", repo_name);
-        int pull_result = system(cd_command);
-        if (pull_result != 0)
+        // Check for and remove stale lock files if they exist
+        char remove_locks_cmd[BUFFER_SIZE] = {0};
+        sprintf(remove_locks_cmd, "rm -f %s/.git/index.lock %s/.git/HEAD.lock 2>/dev/null",
+                repo_name, repo_name);
+        system(remove_locks_cmd);
+
+        // Get current commit hash before pull
+        char hash_cmd[BUFFER_SIZE] = {0};
+        sprintf(hash_cmd, "cd %s && git rev-parse HEAD 2>/dev/null", repo_name);
+        FILE *hash_pipe = popen(hash_cmd, "r");
+        char before_hash[41] = {0};
+        if (hash_pipe && fgets(before_hash, 41, hash_pipe))
         {
-            // Log a warning but continue
-            fprintf(stderr, "Warning: Failed to pull latest changes. Exit code: %d\n", pull_result);
+            pclose(hash_pipe);
+
+            // Pull the latest changes
+            char cd_command[BUFFER_SIZE] = {0};
+            sprintf(cd_command, "cd %s && git pull -q", repo_name);
+            int pull_result = system(cd_command);
+            if (pull_result != 0)
+            {
+                fprintf(stderr, "Warning: Failed to pull latest changes. Exit code: %d\n", pull_result);
+                needs_codeflow = true; // Run codeflow anyway as fallback
+            }
+            else
+            {
+                // Get hash after pull to see if anything changed
+                hash_pipe = popen(hash_cmd, "r");
+                char after_hash[41] = {0};
+                if (hash_pipe && fgets(after_hash, 41, hash_pipe))
+                {
+                    pclose(hash_pipe);
+                    // Compare hashes to determine if codeflow should run
+                    needs_codeflow = (strcmp(before_hash, after_hash) != 0);
+                    if (!needs_codeflow)
+                    {
+                        printf("Repository is already up-to-date. Skipping codeflow.\n");
+                    }
+                }
+                else
+                {
+                    needs_codeflow = true; // If we can't verify, assume changes
+                    if (hash_pipe)
+                        pclose(hash_pipe);
+                }
+            }
+        }
+        else
+        {
+            needs_codeflow = true; // If we can't verify, assume changes
+            if (hash_pipe)
+                pclose(hash_pipe);
         }
     }
     else
     {
-        // Use the provided full URL directly.
+        // Clone the repository for the first time
         char git_command[BUFFER_SIZE] = {0};
         if (payload->branch && strlen(payload->branch) > 0)
         {
@@ -539,42 +644,25 @@ bool clone_repository(ReceivePayload *payload)
             fprintf(stderr, "Failed to clone repository. Exit code: %d\n", result);
             return false;
         }
+        needs_codeflow = true; // Always run codeflow on fresh clone
     }
 
-    // Execute codeflow silently
-    char codeflow_command[BUFFER_SIZE] = {0};
-    sprintf(codeflow_command, "./goservice/codeflow %s", repo_name);
-    int codeflow_result = system(codeflow_command);
-    if (codeflow_result == 0)
+    printf("%s repository %s\n", needs_codeflow ? "Cloned/Updated" : "Already up-to-date", repo_name);
+
+    // Only execute codeflow if we cloned a new repo or pulled changes
+    if (needs_codeflow)
     {
-        FILE *graph_file = fopen("graphdata.json", "r");
-        if (graph_file == NULL)
+        char codeflow_command[BUFFER_SIZE] = {0};
+        sprintf(codeflow_command, "./goservice/codeflow %s", repo_name);
+        int codeflow_result = system(codeflow_command);
+        if (codeflow_result != 0)
         {
-            return true;
+            fprintf(stderr, "Failed to execute codeflow. Exit code: %d\n", codeflow_result);
         }
-        fseek(graph_file, 0, SEEK_END);
-        long graph_size = ftell(graph_file);
-        fseek(graph_file, 0, SEEK_SET);
-        char *graph_data = malloc(graph_size + 1);
-        if (graph_data == NULL)
+        else
         {
-            fclose(graph_file);
-            return true;
+            printf("Successfully executed codeflow for %s\n", repo_name);
         }
-        size_t read_size = fread(graph_data, 1, graph_size, graph_file);
-        fclose(graph_file);
-        if (read_size != graph_size)
-        {
-            free(graph_data);
-            return true;
-        }
-        graph_data[graph_size] = '\0';
-        payload->graph_data = strdup(graph_data);
-        free(graph_data);
-    }
-    else
-    {
-        fprintf(stderr, "Failed to execute codeflow. Exit code: %d\n", codeflow_result);
     }
 
     return true;

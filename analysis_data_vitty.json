@@ -1,0 +1,3284 @@
+{
+  "data": [
+    {
+      "file": "vitty/postcss.config.js",
+      "functions": null,
+      "variables": null
+    },
+    {
+      "file": "vitty/src/App.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "App",
+          "defined_at_line": 14,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/App.tsx:14",
+            "vitty/src/App.tsx:79",
+            "vitty/src/components/EditTimeTable.tsx:61",
+            "vitty/src/components/EditTimeTable.tsx:68",
+            "vitty/src/main.tsx:3",
+            "vitty/src/main.tsx:8"
+          ]
+        },
+        {
+          "name": "firebaseConfig",
+          "defined_at_line": 15,
+          "transformations": [
+            {
+              "file": "vitty/src/App.tsx",
+              "line": 15
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:15",
+            "vitty/src/App.tsx:25"
+          ]
+        },
+        {
+          "name": "uuid",
+          "defined_at_line": 29,
+          "transformations": [
+            {
+              "file": "vitty/src/App.tsx",
+              "line": 29
+            },
+            {
+              "file": "vitty/src/App.tsx",
+              "line": 67
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:29",
+            "vitty/src/App.tsx:36",
+            "vitty/src/App.tsx:67",
+            "vitty/src/components/Auth.tsx:23",
+            "vitty/src/components/GetUserName.tsx:13",
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GuardRoute.tsx:6",
+            "vitty/src/components/GuardRoute.tsx:7",
+            "vitty/src/components/GuardRoute.tsx:8",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/Dashboard.tsx:12",
+            "vitty/src/pages/Dashboard.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:31",
+            "vitty/src/store/authStore.tsx:18",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:40",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:67",
+            "vitty/src/store/authStore.tsx:75",
+            "vitty/src/store/authStore.tsx:103",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:109",
+            "vitty/src/utils/apicalls.tsx:35",
+            "vitty/src/utils/apicalls.tsx:139",
+            "vitty/src/utils/apicalls.tsx:143",
+            "vitty/src/utils/apicalls.tsx:169",
+            "vitty/src/utils/apicalls.tsx:174"
+          ]
+        },
+        {
+          "name": "auth",
+          "defined_at_line": 31,
+          "transformations": [
+            {
+              "file": "vitty/src/App.tsx",
+              "line": 31
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:6",
+            "vitty/src/App.tsx:31",
+            "vitty/src/App.tsx:32",
+            "vitty/src/components/Auth.tsx:8",
+            "vitty/src/components/Auth.tsx:13",
+            "vitty/src/components/Auth.tsx:18",
+            "vitty/src/components/Auth.tsx:19",
+            "vitty/src/components/Auth.tsx:20",
+            "vitty/src/components/Auth.tsx:42",
+            "vitty/src/components/Auth.tsx:51",
+            "vitty/src/components/GuardRoute.tsx:2",
+            "vitty/src/components/Nav.tsx:3",
+            "vitty/src/components/Nav.tsx:18",
+            "vitty/src/components/Nav.tsx:19",
+            "vitty/src/components/Profile.tsx:6",
+            "vitty/src/components/Profile.tsx:18",
+            "vitty/src/components/Profile.tsx:19",
+            "vitty/src/components/Profile.tsx:20",
+            "vitty/src/utils/apicalls.tsx:40",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:157",
+            "vitty/src/utils/apicalls.tsx:185"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/Auth.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Auth",
+          "defined_at_line": 12,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 12
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:12",
+            "vitty/src/components/Auth.tsx:61",
+            "vitty/src/pages/login.tsx:2",
+            "vitty/src/pages/login.tsx:8"
+          ]
+        },
+        {
+          "name": "auth",
+          "defined_at_line": 13,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 13
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:6",
+            "vitty/src/App.tsx:31",
+            "vitty/src/App.tsx:32",
+            "vitty/src/components/Auth.tsx:8",
+            "vitty/src/components/Auth.tsx:13",
+            "vitty/src/components/Auth.tsx:18",
+            "vitty/src/components/Auth.tsx:19",
+            "vitty/src/components/Auth.tsx:20",
+            "vitty/src/components/Auth.tsx:42",
+            "vitty/src/components/Auth.tsx:51",
+            "vitty/src/components/GuardRoute.tsx:2",
+            "vitty/src/components/Nav.tsx:3",
+            "vitty/src/components/Nav.tsx:18",
+            "vitty/src/components/Nav.tsx:19",
+            "vitty/src/components/Profile.tsx:6",
+            "vitty/src/components/Profile.tsx:18",
+            "vitty/src/components/Profile.tsx:19",
+            "vitty/src/components/Profile.tsx:20",
+            "vitty/src/utils/apicalls.tsx:40",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:157",
+            "vitty/src/utils/apicalls.tsx:185"
+          ]
+        },
+        {
+          "name": "googleProvider",
+          "defined_at_line": 14,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 14
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:14",
+            "vitty/src/components/Auth.tsx:42"
+          ]
+        },
+        {
+          "name": "appleProvider",
+          "defined_at_line": 15,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 15
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:15",
+            "vitty/src/components/Auth.tsx:16",
+            "vitty/src/components/Auth.tsx:17",
+            "vitty/src/components/Auth.tsx:51"
+          ]
+        },
+        {
+          "name": "logIn",
+          "defined_at_line": 18,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 18
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:18",
+            "vitty/src/components/Auth.tsx:42",
+            "vitty/src/components/Auth.tsx:51"
+          ]
+        },
+        {
+          "name": "errorCode",
+          "defined_at_line": 27,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 27
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:27",
+            "vitty/src/components/Auth.tsx:30"
+          ]
+        },
+        {
+          "name": "errorMessage",
+          "defined_at_line": 28,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 28
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Auth.tsx:28",
+            "vitty/src/components/Auth.tsx:30"
+          ]
+        },
+        {
+          "name": "email",
+          "defined_at_line": 29,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Auth.tsx",
+              "line": 29
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:39",
+            "vitty/src/App.tsx:44",
+            "vitty/src/components/Auth.tsx:16",
+            "vitty/src/components/Auth.tsx:29",
+            "vitty/src/components/Auth.tsx:30",
+            "vitty/src/components/Nav.tsx:13",
+            "vitty/src/components/Profile.tsx:11",
+            "vitty/src/components/Profile.tsx:37",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/store/authStore.tsx:23",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:44",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:71",
+            "vitty/src/store/authStore.tsx:79",
+            "vitty/src/store/authStore.tsx:106",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:113"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/Course.tsx",
+      "functions": [
+        {
+          "name": "CourseCard",
+          "start_line": 4,
+          "end_line": 4,
+          "calls": null
+        }
+      ],
+      "variables": [
+        {
+          "name": "slots",
+          "defined_at_line": 15,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/Course.tsx:15",
+            "vitty/src/components/Course.tsx:26",
+            "vitty/src/components/Modal.tsx:69",
+            "vitty/src/components/Modal.tsx:111",
+            "vitty/src/components/UploadTimeTable.tsx:42",
+            "vitty/src/utils/ParseAndReturn.tsx:265",
+            "vitty/src/utils/ParseAndReturn.tsx:269",
+            "vitty/src/utils/ParseAndReturn.tsx:271",
+            "vitty/src/utils/ParseAndReturn.tsx:272",
+            "vitty/src/utils/ParseAndReturn.tsx:273",
+            "vitty/src/utils/ParseAndReturn.tsx:276",
+            "vitty/src/utils/ParseAndReturn.tsx:277"
+          ]
+        },
+        {
+          "name": "onClickEdit",
+          "defined_at_line": 17,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Course.tsx",
+              "line": 17
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Course.tsx:17",
+            "vitty/src/components/Course.tsx:39"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/EditTimeTable.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "EditTimeTable",
+          "defined_at_line": 11,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/EditTimeTable.tsx:11",
+            "vitty/src/components/EditTimeTable.tsx:81",
+            "vitty/src/pages/TimeTable.tsx:5",
+            "vitty/src/pages/TimeTable.tsx:44"
+          ]
+        },
+        {
+          "name": "handleClick",
+          "defined_at_line": 14,
+          "transformations": [
+            {
+              "file": "vitty/src/components/EditTimeTable.tsx",
+              "line": 14
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/EditTimeTable.tsx:14",
+            "vitty/src/components/EditTimeTable.tsx:71"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/GetUserName.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "GetUsername",
+          "defined_at_line": 7,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:7",
+            "vitty/src/components/GetUserName.tsx:104"
+          ]
+        },
+        {
+          "name": "regexPattern",
+          "defined_at_line": 12,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GetUserName.tsx",
+              "line": 12
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:12",
+            "vitty/src/components/GetUserName.tsx:40",
+            "vitty/src/components/UploadTimeTable.tsx:16",
+            "vitty/src/components/UploadTimeTable.tsx:29"
+          ]
+        },
+        {
+          "name": "uuid",
+          "defined_at_line": 13,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GetUserName.tsx",
+              "line": 13
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:29",
+            "vitty/src/App.tsx:36",
+            "vitty/src/App.tsx:67",
+            "vitty/src/components/Auth.tsx:23",
+            "vitty/src/components/GetUserName.tsx:13",
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GuardRoute.tsx:6",
+            "vitty/src/components/GuardRoute.tsx:7",
+            "vitty/src/components/GuardRoute.tsx:8",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/Dashboard.tsx:12",
+            "vitty/src/pages/Dashboard.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:31",
+            "vitty/src/store/authStore.tsx:18",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:40",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:67",
+            "vitty/src/store/authStore.tsx:75",
+            "vitty/src/store/authStore.tsx:103",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:109",
+            "vitty/src/utils/apicalls.tsx:35",
+            "vitty/src/utils/apicalls.tsx:139",
+            "vitty/src/utils/apicalls.tsx:143",
+            "vitty/src/utils/apicalls.tsx:169",
+            "vitty/src/utils/apicalls.tsx:174"
+          ]
+        },
+        {
+          "name": "updateUserName",
+          "defined_at_line": 22,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GetUserName.tsx",
+              "line": 22
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:22",
+            "vitty/src/components/GetUserName.tsx:61"
+          ]
+        },
+        {
+          "name": "validateInput",
+          "defined_at_line": 37,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GetUserName.tsx",
+              "line": 37
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:37",
+            "vitty/src/components/GetUserName.tsx:94"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/GuardRoute.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "GuardedRoute",
+          "defined_at_line": 5,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GuardRoute.tsx",
+              "line": 5
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GuardRoute.tsx:5",
+            "vitty/src/components/GuardRoute.tsx:11"
+          ]
+        },
+        {
+          "name": "uuid",
+          "defined_at_line": 6,
+          "transformations": [
+            {
+              "file": "vitty/src/components/GuardRoute.tsx",
+              "line": 6
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:29",
+            "vitty/src/App.tsx:36",
+            "vitty/src/App.tsx:67",
+            "vitty/src/components/Auth.tsx:23",
+            "vitty/src/components/GetUserName.tsx:13",
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GuardRoute.tsx:6",
+            "vitty/src/components/GuardRoute.tsx:7",
+            "vitty/src/components/GuardRoute.tsx:8",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/Dashboard.tsx:12",
+            "vitty/src/pages/Dashboard.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:31",
+            "vitty/src/store/authStore.tsx:18",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:40",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:67",
+            "vitty/src/store/authStore.tsx:75",
+            "vitty/src/store/authStore.tsx:103",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:109",
+            "vitty/src/utils/apicalls.tsx:35",
+            "vitty/src/utils/apicalls.tsx:139",
+            "vitty/src/utils/apicalls.tsx:143",
+            "vitty/src/utils/apicalls.tsx:169",
+            "vitty/src/utils/apicalls.tsx:174"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/HomeCarousal.tsx",
+      "functions": [
+        {
+          "name": "HomeCarousal",
+          "start_line": 7,
+          "end_line": 7,
+          "calls": null
+        }
+      ],
+      "variables": null
+    },
+    {
+      "file": "vitty/src/components/Loader.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Loader",
+          "defined_at_line": 4,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/App.tsx:8",
+            "vitty/src/App.tsx:66",
+            "vitty/src/App.tsx:70",
+            "vitty/src/components/Loader.tsx:2",
+            "vitty/src/components/Loader.tsx:4",
+            "vitty/src/components/Loader.tsx:12",
+            "vitty/src/pages/Dashboard.tsx:7",
+            "vitty/src/pages/Dashboard.tsx:36"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/Modal.tsx",
+      "functions": [
+        {
+          "name": "Modal",
+          "start_line": 21,
+          "end_line": 21,
+          "calls": null
+        }
+      ],
+      "variables": [
+        {
+          "name": "validInput",
+          "defined_at_line": 47,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Modal.tsx",
+              "line": 47
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Modal.tsx:47",
+            "vitty/src/components/Modal.tsx:82"
+          ]
+        },
+        {
+          "name": "onAddCourse",
+          "defined_at_line": 81,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Modal.tsx",
+              "line": 81
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Modal.tsx:81",
+            "vitty/src/components/Modal.tsx:178"
+          ]
+        },
+        {
+          "name": "course",
+          "defined_at_line": 83,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/Course.tsx:24",
+            "vitty/src/components/Course.tsx:26",
+            "vitty/src/components/Course.tsx:28",
+            "vitty/src/components/Course.tsx:29",
+            "vitty/src/components/Course.tsx:30",
+            "vitty/src/components/Course.tsx:31",
+            "vitty/src/components/Course.tsx:32",
+            "vitty/src/components/Course.tsx:34",
+            "vitty/src/components/Course.tsx:35",
+            "vitty/src/components/Course.tsx:36",
+            "vitty/src/components/Course.tsx:39",
+            "vitty/src/components/Modal.tsx:22",
+            "vitty/src/components/Modal.tsx:49",
+            "vitty/src/components/Modal.tsx:53",
+            "vitty/src/components/Modal.tsx:57",
+            "vitty/src/components/Modal.tsx:74",
+            "vitty/src/components/Modal.tsx:83",
+            "vitty/src/components/Modal.tsx:92",
+            "vitty/src/components/Modal.tsx:115",
+            "vitty/src/components/UploadTimeTable.tsx:70",
+            "vitty/src/store/TimeTableStore.tsx:22",
+            "vitty/src/store/TimeTableStore.tsx:40",
+            "vitty/src/store/TimeTableStore.tsx:44",
+            "vitty/src/store/TimeTableStore.tsx:47"
+          ]
+        },
+        {
+          "name": "onRemove",
+          "defined_at_line": 97,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Modal.tsx",
+              "line": 97
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Modal.tsx:97",
+            "vitty/src/components/Modal.tsx:182"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/Nav.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Nav",
+          "defined_at_line": 10,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:6",
+            "vitty/src/components/Nav.tsx:10",
+            "vitty/src/components/Nav.tsx:55",
+            "vitty/src/pages/Template.tsx:2"
+          ]
+        },
+        {
+          "name": "user",
+          "defined_at_line": 15,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Nav.tsx",
+              "line": 15
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:49",
+            "vitty/src/components/Auth.tsx:23",
+            "vitty/src/components/Nav.tsx:15",
+            "vitty/src/components/Nav.tsx:33",
+            "vitty/src/components/Nav.tsx:34",
+            "vitty/src/components/Nav.tsx:43",
+            "vitty/src/components/Nav.tsx:44",
+            "vitty/src/utils/apicalls.tsx:40"
+          ]
+        },
+        {
+          "name": "pic",
+          "defined_at_line": 16,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Nav.tsx",
+              "line": 16
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:16",
+            "vitty/src/components/Nav.tsx:45"
+          ]
+        },
+        {
+          "name": "logOut",
+          "defined_at_line": 17,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Nav.tsx",
+              "line": 17
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:17",
+            "vitty/src/components/Nav.tsx:49",
+            "vitty/src/components/Profile.tsx:17",
+            "vitty/src/components/Profile.tsx:39"
+          ]
+        },
+        {
+          "name": "auth",
+          "defined_at_line": 18,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Nav.tsx",
+              "line": 18
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:6",
+            "vitty/src/App.tsx:31",
+            "vitty/src/App.tsx:32",
+            "vitty/src/components/Auth.tsx:8",
+            "vitty/src/components/Auth.tsx:13",
+            "vitty/src/components/Auth.tsx:18",
+            "vitty/src/components/Auth.tsx:19",
+            "vitty/src/components/Auth.tsx:20",
+            "vitty/src/components/Auth.tsx:42",
+            "vitty/src/components/Auth.tsx:51",
+            "vitty/src/components/GuardRoute.tsx:2",
+            "vitty/src/components/Nav.tsx:3",
+            "vitty/src/components/Nav.tsx:18",
+            "vitty/src/components/Nav.tsx:19",
+            "vitty/src/components/Profile.tsx:6",
+            "vitty/src/components/Profile.tsx:18",
+            "vitty/src/components/Profile.tsx:19",
+            "vitty/src/components/Profile.tsx:20",
+            "vitty/src/utils/apicalls.tsx:40",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:157",
+            "vitty/src/utils/apicalls.tsx:185"
+          ]
+        },
+        {
+          "name": "toggle",
+          "defined_at_line": 27,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Nav.tsx",
+              "line": 27
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:27",
+            "vitty/src/components/Nav.tsx:44",
+            "vitty/src/components/Profile.tsx:13",
+            "vitty/src/components/Profile.tsx:29",
+            "vitty/src/components/Profile.tsx:33"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/Profile.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Profile",
+          "defined_at_line": 8,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/App.tsx:10",
+            "vitty/src/App.tsx:74",
+            "vitty/src/components/Profile.tsx:8",
+            "vitty/src/components/Profile.tsx:32",
+            "vitty/src/components/Profile.tsx:47"
+          ]
+        },
+        {
+          "name": "toggle",
+          "defined_at_line": 13,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Profile.tsx",
+              "line": 13
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:27",
+            "vitty/src/components/Nav.tsx:44",
+            "vitty/src/components/Profile.tsx:13",
+            "vitty/src/components/Profile.tsx:29",
+            "vitty/src/components/Profile.tsx:33"
+          ]
+        },
+        {
+          "name": "logOut",
+          "defined_at_line": 17,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Profile.tsx",
+              "line": 17
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Nav.tsx:17",
+            "vitty/src/components/Nav.tsx:49",
+            "vitty/src/components/Profile.tsx:17",
+            "vitty/src/components/Profile.tsx:39"
+          ]
+        },
+        {
+          "name": "auth",
+          "defined_at_line": 18,
+          "transformations": [
+            {
+              "file": "vitty/src/components/Profile.tsx",
+              "line": 18
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:6",
+            "vitty/src/App.tsx:31",
+            "vitty/src/App.tsx:32",
+            "vitty/src/components/Auth.tsx:8",
+            "vitty/src/components/Auth.tsx:13",
+            "vitty/src/components/Auth.tsx:18",
+            "vitty/src/components/Auth.tsx:19",
+            "vitty/src/components/Auth.tsx:20",
+            "vitty/src/components/Auth.tsx:42",
+            "vitty/src/components/Auth.tsx:51",
+            "vitty/src/components/GuardRoute.tsx:2",
+            "vitty/src/components/Nav.tsx:3",
+            "vitty/src/components/Nav.tsx:18",
+            "vitty/src/components/Nav.tsx:19",
+            "vitty/src/components/Profile.tsx:6",
+            "vitty/src/components/Profile.tsx:18",
+            "vitty/src/components/Profile.tsx:19",
+            "vitty/src/components/Profile.tsx:20",
+            "vitty/src/utils/apicalls.tsx:40",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:157",
+            "vitty/src/utils/apicalls.tsx:185"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/ReviewTimeTable.tsx",
+      "functions": [
+        {
+          "name": "ReviewTimeTable",
+          "start_line": 13,
+          "end_line": 13,
+          "calls": [
+            {
+              "name": "convertTo24HourFormat",
+              "line": 27
+            },
+            {
+              "name": "convertTo24HourFormat",
+              "line": 28
+            },
+            {
+              "name": "convertTo24HourFormat",
+              "line": 43
+            }
+          ]
+        },
+        {
+          "name": "convertTo24HourFormat",
+          "start_line": 43,
+          "end_line": 43,
+          "calls": [
+            {
+              "name": "ReviewTimeTable",
+              "line": 13
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "name": "fetchData",
+          "defined_at_line": 24,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 24
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:24",
+            "vitty/src/components/ReviewTimeTable.tsx:36"
+          ]
+        },
+        {
+          "name": "classes",
+          "defined_at_line": 25,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/HomeCarousal.tsx:34",
+            "vitty/src/components/HomeCarousal.tsx:47",
+            "vitty/src/components/ReviewTimeTable.tsx:17",
+            "vitty/src/components/ReviewTimeTable.tsx:25",
+            "vitty/src/components/ReviewTimeTable.tsx:26",
+            "vitty/src/components/ReviewTimeTable.tsx:148"
+          ]
+        },
+        {
+          "name": "sortedClasses",
+          "defined_at_line": 26,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 26
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:18",
+            "vitty/src/components/ReviewTimeTable.tsx:26",
+            "vitty/src/components/ReviewTimeTable.tsx:31"
+          ]
+        },
+        {
+          "name": "aTime",
+          "defined_at_line": 27,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 27
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:27",
+            "vitty/src/components/ReviewTimeTable.tsx:29"
+          ]
+        },
+        {
+          "name": "bTime",
+          "defined_at_line": 28,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 28
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:28",
+            "vitty/src/components/ReviewTimeTable.tsx:29"
+          ]
+        },
+        {
+          "name": "hour24",
+          "defined_at_line": 45,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 45
+            },
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 49
+            },
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 50
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:45",
+            "vitty/src/components/ReviewTimeTable.tsx:47",
+            "vitty/src/components/ReviewTimeTable.tsx:48",
+            "vitty/src/components/ReviewTimeTable.tsx:49",
+            "vitty/src/components/ReviewTimeTable.tsx:50",
+            "vitty/src/components/ReviewTimeTable.tsx:53"
+          ]
+        },
+        {
+          "name": "handleConfirm",
+          "defined_at_line": 57,
+          "transformations": [
+            {
+              "file": "vitty/src/components/ReviewTimeTable.tsx",
+              "line": 57
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:57",
+            "vitty/src/components/ReviewTimeTable.tsx:164"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/components/UploadTimeTable.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Upload",
+          "defined_at_line": 11,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/HomeCarousal.tsx:59",
+            "vitty/src/components/UploadTimeTable.tsx:11",
+            "vitty/src/components/UploadTimeTable.tsx:19",
+            "vitty/src/components/UploadTimeTable.tsx:60",
+            "vitty/src/components/UploadTimeTable.tsx:95"
+          ]
+        },
+        {
+          "name": "regexPattern",
+          "defined_at_line": 16,
+          "transformations": [
+            {
+              "file": "vitty/src/components/UploadTimeTable.tsx",
+              "line": 16
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:12",
+            "vitty/src/components/GetUserName.tsx:40",
+            "vitty/src/components/UploadTimeTable.tsx:16",
+            "vitty/src/components/UploadTimeTable.tsx:29"
+          ]
+        },
+        {
+          "name": "submitText",
+          "defined_at_line": 23,
+          "transformations": [
+            {
+              "file": "vitty/src/components/UploadTimeTable.tsx",
+              "line": 23
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/UploadTimeTable.tsx:23",
+            "vitty/src/components/UploadTimeTable.tsx:85"
+          ]
+        },
+        {
+          "name": "proceed",
+          "defined_at_line": 30,
+          "transformations": [
+            {
+              "file": "vitty/src/components/UploadTimeTable.tsx",
+              "line": 30
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/UploadTimeTable.tsx:30",
+            "vitty/src/components/UploadTimeTable.tsx:31",
+            "vitty/src/components/UploadTimeTable.tsx:33"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/main.tsx",
+      "functions": null,
+      "variables": null
+    },
+    {
+      "file": "vitty/src/pages/Dashboard.tsx",
+      "functions": [
+        {
+          "name": "Dashboard",
+          "start_line": 9,
+          "end_line": 9,
+          "calls": null
+        }
+      ],
+      "variables": null
+    },
+    {
+      "file": "vitty/src/pages/Template.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "Template",
+          "defined_at_line": 10,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/App.tsx:4",
+            "vitty/src/App.tsx:64",
+            "vitty/src/App.tsx:75",
+            "vitty/src/pages/Template.tsx:10",
+            "vitty/src/pages/Template.tsx:33"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/pages/TimeTable.tsx",
+      "functions": [
+        {
+          "name": "Timetable",
+          "start_line": 23,
+          "end_line": 23,
+          "calls": null
+        }
+      ],
+      "variables": null
+    },
+    {
+      "file": "vitty/src/pages/login.tsx",
+      "functions": [
+        {
+          "name": "Login",
+          "start_line": 4,
+          "end_line": 4,
+          "calls": null
+        }
+      ],
+      "variables": null
+    },
+    {
+      "file": "vitty/src/store/TimeTableStore.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "useTimeTableStore",
+          "defined_at_line": 25,
+          "transformations": [
+            {
+              "file": "vitty/src/store/TimeTableStore.tsx",
+              "line": 25
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Modal.tsx:3",
+            "vitty/src/components/Modal.tsx:30",
+            "vitty/src/components/ReviewTimeTable.tsx:6",
+            "vitty/src/components/ReviewTimeTable.tsx:15",
+            "vitty/src/components/UploadTimeTable.tsx:9",
+            "vitty/src/components/UploadTimeTable.tsx:14",
+            "vitty/src/store/TimeTableStore.tsx:25"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/store/authStore.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "useAuthStore",
+          "defined_at_line": 39,
+          "transformations": [
+            {
+              "file": "vitty/src/store/authStore.tsx",
+              "line": 39
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:9",
+            "vitty/src/App.tsx:26",
+            "vitty/src/components/EditTimeTable.tsx:7",
+            "vitty/src/components/EditTimeTable.tsx:12",
+            "vitty/src/components/GetUserName.tsx:4",
+            "vitty/src/components/GetUserName.tsx:14",
+            "vitty/src/components/GuardRoute.tsx:3",
+            "vitty/src/components/Nav.tsx:7",
+            "vitty/src/components/Nav.tsx:13",
+            "vitty/src/components/Profile.tsx:5",
+            "vitty/src/components/Profile.tsx:11",
+            "vitty/src/components/ReviewTimeTable.tsx:1",
+            "vitty/src/components/ReviewTimeTable.tsx:14",
+            "vitty/src/components/UploadTimeTable.tsx:6",
+            "vitty/src/components/UploadTimeTable.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:6",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/TimeTable.tsx:2",
+            "vitty/src/pages/TimeTable.tsx:24",
+            "vitty/src/store/authStore.tsx:39"
+          ]
+        },
+        {
+          "name": "uuid",
+          "defined_at_line": 103,
+          "transformations": [
+            {
+              "file": "vitty/src/store/authStore.tsx",
+              "line": 103
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:29",
+            "vitty/src/App.tsx:36",
+            "vitty/src/App.tsx:67",
+            "vitty/src/components/Auth.tsx:23",
+            "vitty/src/components/GetUserName.tsx:13",
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GuardRoute.tsx:6",
+            "vitty/src/components/GuardRoute.tsx:7",
+            "vitty/src/components/GuardRoute.tsx:8",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/Dashboard.tsx:12",
+            "vitty/src/pages/Dashboard.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:31",
+            "vitty/src/store/authStore.tsx:18",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:40",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:67",
+            "vitty/src/store/authStore.tsx:75",
+            "vitty/src/store/authStore.tsx:103",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:109",
+            "vitty/src/utils/apicalls.tsx:35",
+            "vitty/src/utils/apicalls.tsx:139",
+            "vitty/src/utils/apicalls.tsx:143",
+            "vitty/src/utils/apicalls.tsx:169",
+            "vitty/src/utils/apicalls.tsx:174"
+          ]
+        },
+        {
+          "name": "profile",
+          "defined_at_line": 104,
+          "transformations": [
+            {
+              "file": "vitty/src/store/authStore.tsx",
+              "line": 104
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:37",
+            "vitty/src/components/Nav.tsx:13",
+            "vitty/src/components/Nav.tsx:16",
+            "vitty/src/components/Nav.tsx:29",
+            "vitty/src/store/authStore.tsx:20",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:42",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:69",
+            "vitty/src/store/authStore.tsx:77",
+            "vitty/src/store/authStore.tsx:104",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:111"
+          ]
+        },
+        {
+          "name": "username",
+          "defined_at_line": 105,
+          "transformations": [
+            {
+              "file": "vitty/src/store/authStore.tsx",
+              "line": 105
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:23",
+            "vitty/src/components/GetUserName.tsx:51",
+            "vitty/src/components/ReviewTimeTable.tsx:14",
+            "vitty/src/components/ReviewTimeTable.tsx:64",
+            "vitty/src/components/UploadTimeTable.tsx:13",
+            "vitty/src/pages/Dashboard.tsx:10",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:31",
+            "vitty/src/pages/Dashboard.tsx:35",
+            "vitty/src/pages/Dashboard.tsx:37",
+            "vitty/src/pages/TimeTable.tsx:24",
+            "vitty/src/pages/TimeTable.tsx:27",
+            "vitty/src/pages/TimeTable.tsx:42",
+            "vitty/src/store/authStore.tsx:21",
+            "vitty/src/store/authStore.tsx:33",
+            "vitty/src/store/authStore.tsx:43",
+            "vitty/src/store/authStore.tsx:78",
+            "vitty/src/store/authStore.tsx:92",
+            "vitty/src/store/authStore.tsx:94",
+            "vitty/src/store/authStore.tsx:105",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:112",
+            "vitty/src/utils/apicalls.tsx:29",
+            "vitty/src/utils/apicalls.tsx:35",
+            "vitty/src/utils/apicalls.tsx:60",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:85",
+            "vitty/src/utils/apicalls.tsx:91",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:114",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:145",
+            "vitty/src/utils/apicalls.tsx:171",
+            "vitty/src/utils/apicalls.tsx:176"
+          ]
+        },
+        {
+          "name": "email",
+          "defined_at_line": 106,
+          "transformations": [
+            {
+              "file": "vitty/src/store/authStore.tsx",
+              "line": 106
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:39",
+            "vitty/src/App.tsx:44",
+            "vitty/src/components/Auth.tsx:16",
+            "vitty/src/components/Auth.tsx:29",
+            "vitty/src/components/Auth.tsx:30",
+            "vitty/src/components/Nav.tsx:13",
+            "vitty/src/components/Profile.tsx:11",
+            "vitty/src/components/Profile.tsx:37",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/store/authStore.tsx:23",
+            "vitty/src/store/authStore.tsx:31",
+            "vitty/src/store/authStore.tsx:44",
+            "vitty/src/store/authStore.tsx:65",
+            "vitty/src/store/authStore.tsx:71",
+            "vitty/src/store/authStore.tsx:79",
+            "vitty/src/store/authStore.tsx:106",
+            "vitty/src/store/authStore.tsx:107",
+            "vitty/src/store/authStore.tsx:113"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/store/profileStore.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "useShowProfileStore",
+          "defined_at_line": 9,
+          "transformations": [
+            {
+              "file": "vitty/src/store/profileStore.tsx",
+              "line": 9
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:11",
+            "vitty/src/App.tsx:27",
+            "vitty/src/components/Nav.tsx:8",
+            "vitty/src/components/Nav.tsx:14",
+            "vitty/src/components/Profile.tsx:4",
+            "vitty/src/components/Profile.tsx:10",
+            "vitty/src/store/profileStore.tsx:9"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/store/useLoadingStore.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "useLoadingStore",
+          "defined_at_line": 10,
+          "transformations": [
+            {
+              "file": "vitty/src/store/useLoadingStore.tsx",
+              "line": 10
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/App.tsx:12",
+            "vitty/src/App.tsx:28",
+            "vitty/src/components/EditTimeTable.tsx:9",
+            "vitty/src/components/EditTimeTable.tsx:13",
+            "vitty/src/components/GetUserName.tsx:5",
+            "vitty/src/components/GetUserName.tsx:15",
+            "vitty/src/components/ReviewTimeTable.tsx:10",
+            "vitty/src/components/ReviewTimeTable.tsx:11",
+            "vitty/src/components/ReviewTimeTable.tsx:16",
+            "vitty/src/components/ReviewTimeTable.tsx:70",
+            "vitty/src/components/UploadTimeTable.tsx:7",
+            "vitty/src/components/UploadTimeTable.tsx:15",
+            "vitty/src/store/useLoadingStore.tsx:10"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/utils/ParseAndReturn.tsx",
+      "functions": [
+        {
+          "name": "ParseAndReturn",
+          "start_line": 3,
+          "end_line": 3,
+          "calls": null
+        }
+      ],
+      "variables": [
+        {
+          "name": "TimeTableSlots",
+          "defined_at_line": 13,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/utils/ParseAndReturn.tsx:13",
+            "vitty/src/utils/ParseAndReturn.tsx:267"
+          ]
+        },
+        {
+          "name": "TheoryTimings",
+          "defined_at_line": 224,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/utils/ParseAndReturn.tsx:224",
+            "vitty/src/utils/ParseAndReturn.tsx:272",
+            "vitty/src/utils/ParseAndReturn.tsx:273"
+          ]
+        },
+        {
+          "name": "LabTimings",
+          "defined_at_line": 238,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/utils/ParseAndReturn.tsx:238",
+            "vitty/src/utils/ParseAndReturn.tsx:276",
+            "vitty/src/utils/ParseAndReturn.tsx:277"
+          ]
+        },
+        {
+          "name": "timetable",
+          "defined_at_line": 253,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 253
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/EditTimeTable.tsx:59",
+            "vitty/src/components/HomeCarousal.tsx:47",
+            "vitty/src/components/Modal.tsx:43",
+            "vitty/src/components/ReviewTimeTable.tsx:15",
+            "vitty/src/components/ReviewTimeTable.tsx:25",
+            "vitty/src/components/ReviewTimeTable.tsx:38",
+            "vitty/src/components/ReviewTimeTable.tsx:41",
+            "vitty/src/components/ReviewTimeTable.tsx:59",
+            "vitty/src/components/ReviewTimeTable.tsx:60",
+            "vitty/src/components/ReviewTimeTable.tsx:63",
+            "vitty/src/components/ReviewTimeTable.tsx:64",
+            "vitty/src/components/ReviewTimeTable.tsx:77",
+            "vitty/src/components/UploadTimeTable.tsx:31",
+            "vitty/src/components/UploadTimeTable.tsx:40",
+            "vitty/src/components/UploadTimeTable.tsx:53",
+            "vitty/src/components/UploadTimeTable.tsx:54",
+            "vitty/src/pages/TimeTable.tsx:24",
+            "vitty/src/pages/TimeTable.tsx:31",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/pages/TimeTable.tsx:40",
+            "vitty/src/pages/TimeTable.tsx:44",
+            "vitty/src/store/TimeTableStore.tsx:14",
+            "vitty/src/store/TimeTableStore.tsx:18",
+            "vitty/src/store/TimeTableStore.tsx:19",
+            "vitty/src/store/TimeTableStore.tsx:26",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/TimeTableStore.tsx:34",
+            "vitty/src/store/TimeTableStore.tsx:39",
+            "vitty/src/store/TimeTableStore.tsx:40",
+            "vitty/src/store/TimeTableStore.tsx:46",
+            "vitty/src/store/TimeTableStore.tsx:47",
+            "vitty/src/store/authStore.tsx:14",
+            "vitty/src/store/authStore.tsx:26",
+            "vitty/src/store/authStore.tsx:28",
+            "vitty/src/store/authStore.tsx:48",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/store/authStore.tsx:57",
+            "vitty/src/store/authStore.tsx:82",
+            "vitty/src/utils/ParseAndReturn.tsx:253",
+            "vitty/src/utils/ParseAndReturn.tsx:255",
+            "vitty/src/utils/ParseAndReturn.tsx:257",
+            "vitty/src/utils/ParseAndReturn.tsx:258",
+            "vitty/src/utils/ParseAndReturn.tsx:259",
+            "vitty/src/utils/ParseAndReturn.tsx:260",
+            "vitty/src/utils/ParseAndReturn.tsx:261",
+            "vitty/src/utils/apicalls.tsx:10",
+            "vitty/src/utils/apicalls.tsx:18",
+            "vitty/src/utils/apicalls.tsx:25",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:71",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:129"
+          ]
+        },
+        {
+          "name": "finalTimetable",
+          "defined_at_line": 254,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/utils/ParseAndReturn.tsx:254",
+            "vitty/src/utils/ParseAndReturn.tsx:279",
+            "vitty/src/utils/ParseAndReturn.tsx:283"
+          ]
+        },
+        {
+          "name": "i",
+          "defined_at_line": 255,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 255
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/ParseAndReturn.tsx:255",
+            "vitty/src/utils/ParseAndReturn.tsx:257",
+            "vitty/src/utils/ParseAndReturn.tsx:258",
+            "vitty/src/utils/ParseAndReturn.tsx:259",
+            "vitty/src/utils/ParseAndReturn.tsx:260",
+            "vitty/src/utils/ParseAndReturn.tsx:261"
+          ]
+        },
+        {
+          "name": "table",
+          "defined_at_line": 256,
+          "transformations": null,
+          "used_in_files": [
+            "vitty/src/components/UploadTimeTable.tsx:31",
+            "vitty/src/utils/ParseAndReturn.tsx:256",
+            "vitty/src/utils/ParseAndReturn.tsx:265",
+            "vitty/src/utils/ParseAndReturn.tsx:266",
+            "vitty/src/utils/ParseAndReturn.tsx:268",
+            "vitty/src/utils/ParseAndReturn.tsx:272",
+            "vitty/src/utils/ParseAndReturn.tsx:273",
+            "vitty/src/utils/ParseAndReturn.tsx:276",
+            "vitty/src/utils/ParseAndReturn.tsx:277",
+            "vitty/src/utils/ParseAndReturn.tsx:279"
+          ]
+        },
+        {
+          "name": "slots",
+          "defined_at_line": 265,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 265
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Course.tsx:15",
+            "vitty/src/components/Course.tsx:26",
+            "vitty/src/components/Modal.tsx:69",
+            "vitty/src/components/Modal.tsx:111",
+            "vitty/src/components/UploadTimeTable.tsx:42",
+            "vitty/src/utils/ParseAndReturn.tsx:265",
+            "vitty/src/utils/ParseAndReturn.tsx:269",
+            "vitty/src/utils/ParseAndReturn.tsx:271",
+            "vitty/src/utils/ParseAndReturn.tsx:272",
+            "vitty/src/utils/ParseAndReturn.tsx:273",
+            "vitty/src/utils/ParseAndReturn.tsx:276",
+            "vitty/src/utils/ParseAndReturn.tsx:277"
+          ]
+        },
+        {
+          "name": "type",
+          "defined_at_line": 266,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 266
+            },
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 270
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:73",
+            "vitty/src/components/GetUserName.tsx:81",
+            "vitty/src/components/Modal.tsx:16",
+            "vitty/src/components/Modal.tsx:25",
+            "vitty/src/components/Modal.tsx:56",
+            "vitty/src/components/Modal.tsx:57",
+            "vitty/src/components/Modal.tsx:72",
+            "vitty/src/components/Modal.tsx:74",
+            "vitty/src/components/Modal.tsx:86",
+            "vitty/src/components/Modal.tsx:125",
+            "vitty/src/components/Modal.tsx:135",
+            "vitty/src/components/Modal.tsx:145",
+            "vitty/src/components/Modal.tsx:155",
+            "vitty/src/components/Modal.tsx:156",
+            "vitty/src/components/Modal.tsx:165",
+            "vitty/src/components/UploadTimeTable.tsx:80",
+            "vitty/src/components/UploadTimeTable.tsx:85",
+            "vitty/src/pages/TimeTable.tsx:14",
+            "vitty/src/store/TimeTableStore.tsx:8",
+            "vitty/src/store/authStore.tsx:8",
+            "vitty/src/utils/ParseAndReturn.tsx:7",
+            "vitty/src/utils/ParseAndReturn.tsx:261",
+            "vitty/src/utils/ParseAndReturn.tsx:266",
+            "vitty/src/utils/ParseAndReturn.tsx:267",
+            "vitty/src/utils/ParseAndReturn.tsx:270",
+            "vitty/tailwind.config.js:1"
+          ]
+        },
+        {
+          "name": "slot",
+          "defined_at_line": 267,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/ParseAndReturn.tsx",
+              "line": 267
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/Course.tsx:11",
+            "vitty/src/components/Course.tsx:17",
+            "vitty/src/components/Course.tsx:18",
+            "vitty/src/components/Course.tsx:28",
+            "vitty/src/components/Course.tsx:34",
+            "vitty/src/components/Course.tsx:35",
+            "vitty/src/components/Course.tsx:39",
+            "vitty/src/components/Modal.tsx:6",
+            "vitty/src/components/Modal.tsx:15",
+            "vitty/src/components/Modal.tsx:21",
+            "vitty/src/components/Modal.tsx:34",
+            "vitty/src/components/Modal.tsx:35",
+            "vitty/src/components/Modal.tsx:36",
+            "vitty/src/components/Modal.tsx:38",
+            "vitty/src/components/Modal.tsx:43",
+            "vitty/src/components/Modal.tsx:45",
+            "vitty/src/components/Modal.tsx:65",
+            "vitty/src/components/Modal.tsx:69",
+            "vitty/src/components/Modal.tsx:88",
+            "vitty/src/components/Modal.tsx:98",
+            "vitty/src/components/Modal.tsx:111",
+            "vitty/src/components/ReviewTimeTable.tsx:173",
+            "vitty/src/pages/TimeTable.tsx:13",
+            "vitty/src/store/TimeTableStore.tsx:7",
+            "vitty/src/store/TimeTableStore.tsx:21",
+            "vitty/src/store/TimeTableStore.tsx:37",
+            "vitty/src/store/TimeTableStore.tsx:40",
+            "vitty/src/store/authStore.tsx:7",
+            "vitty/src/utils/ParseAndReturn.tsx:260",
+            "vitty/src/utils/ParseAndReturn.tsx:265",
+            "vitty/src/utils/ParseAndReturn.tsx:267",
+            "vitty/src/utils/ParseAndReturn.tsx:269",
+            "vitty/src/utils/ParseAndReturn.tsx:271",
+            "vitty/src/utils/ParseAndReturn.tsx:272",
+            "vitty/src/utils/ParseAndReturn.tsx:273",
+            "vitty/src/utils/ParseAndReturn.tsx:276",
+            "vitty/src/utils/ParseAndReturn.tsx:277"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/utils/apicalls.tsx",
+      "functions": null,
+      "variables": [
+        {
+          "name": "baseURL",
+          "defined_at_line": 6,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 6
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:6",
+            "vitty/src/utils/apicalls.tsx:10",
+            "vitty/src/utils/apicalls.tsx:40",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:96",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:157",
+            "vitty/src/utils/apicalls.tsx:185"
+          ]
+        },
+        {
+          "name": "parseAndReturn",
+          "defined_at_line": 8,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 8
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/UploadTimeTable.tsx:4",
+            "vitty/src/components/UploadTimeTable.tsx:37",
+            "vitty/src/utils/apicalls.tsx:8"
+          ]
+        },
+        {
+          "name": "corsProxyUrl",
+          "defined_at_line": 9,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 9
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 62
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:9",
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:62",
+            "vitty/src/utils/apicalls.tsx:64"
+          ]
+        },
+        {
+          "name": "remoteApiUrl",
+          "defined_at_line": 10,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 10
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 63
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 117
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:10",
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:64",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:124"
+          ]
+        },
+        {
+          "name": "url",
+          "defined_at_line": 11,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 11
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 64
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:64"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 12,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 17,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 22,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "checkUserExists",
+          "defined_at_line": 29,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 29
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/pages/Dashboard.tsx:2",
+            "vitty/src/pages/Dashboard.tsx:13",
+            "vitty/src/utils/apicalls.tsx:29"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 30,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 34,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 39,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "uploadText",
+          "defined_at_line": 57,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 57
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/ReviewTimeTable.tsx:7",
+            "vitty/src/components/ReviewTimeTable.tsx:64",
+            "vitty/src/components/UploadTimeTable.tsx:4",
+            "vitty/src/utils/apicalls.tsx:57",
+            "vitty/src/utils/apicalls.tsx:78"
+          ]
+        },
+        {
+          "name": "corsProxyUrl",
+          "defined_at_line": 62,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 9
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 62
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:9",
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:62",
+            "vitty/src/utils/apicalls.tsx:64"
+          ]
+        },
+        {
+          "name": "remoteApiUrl",
+          "defined_at_line": 63,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 10
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 63
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 117
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:10",
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:64",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:124"
+          ]
+        },
+        {
+          "name": "url",
+          "defined_at_line": 64,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 11
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 64
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:64"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 66,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 70,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 75,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "isAvailable",
+          "defined_at_line": 85,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 85
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:3",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/utils/apicalls.tsx:85"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 86,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 90,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 95,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "getTimetable",
+          "defined_at_line": 113,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 113
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/pages/TimeTable.tsx:3",
+            "vitty/src/pages/TimeTable.tsx:27",
+            "vitty/src/utils/apicalls.tsx:113"
+          ]
+        },
+        {
+          "name": "remoteApiUrl",
+          "defined_at_line": 117,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 10
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 63
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 117
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:10",
+            "vitty/src/utils/apicalls.tsx:11",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:63",
+            "vitty/src/utils/apicalls.tsx:64",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:117",
+            "vitty/src/utils/apicalls.tsx:124"
+          ]
+        },
+        {
+          "name": "headers",
+          "defined_at_line": 119,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 119
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:119",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 124,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 125,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "getToken",
+          "defined_at_line": 139,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 139
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/pages/Dashboard.tsx:2",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/utils/apicalls.tsx:139"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 140,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "raw",
+          "defined_at_line": 142,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 142
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:8",
+            "vitty/src/utils/apicalls.tsx:18",
+            "vitty/src/utils/apicalls.tsx:58",
+            "vitty/src/utils/apicalls.tsx:71",
+            "vitty/src/utils/apicalls.tsx:142",
+            "vitty/src/utils/apicalls.tsx:150"
+          ]
+        },
+        {
+          "name": "requestOptions",
+          "defined_at_line": 148,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 148
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:148",
+            "vitty/src/utils/apicalls.tsx:158"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 156,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 160,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "signIn",
+          "defined_at_line": 168,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 168
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:3",
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/utils/apicalls.tsx:168"
+          ]
+        },
+        {
+          "name": "data",
+          "defined_at_line": 173,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 17
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 34
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 70
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 90
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 125
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 128
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 160
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 173
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/components/GetUserName.tsx:24",
+            "vitty/src/components/GetUserName.tsx:25",
+            "vitty/src/components/GetUserName.tsx:26",
+            "vitty/src/components/GetUserName.tsx:28",
+            "vitty/src/components/GetUserName.tsx:32",
+            "vitty/src/components/GetUserName.tsx:48",
+            "vitty/src/components/GetUserName.tsx:49",
+            "vitty/src/components/GetUserName.tsx:53",
+            "vitty/src/components/ReviewTimeTable.tsx:68",
+            "vitty/src/components/ReviewTimeTable.tsx:69",
+            "vitty/src/components/UploadTimeTable.tsx:49",
+            "vitty/src/components/UploadTimeTable.tsx:50",
+            "vitty/src/pages/Dashboard.tsx:17",
+            "vitty/src/pages/Dashboard.tsx:18",
+            "vitty/src/pages/Dashboard.tsx:19",
+            "vitty/src/pages/Dashboard.tsx:20",
+            "vitty/src/pages/Dashboard.tsx:21",
+            "vitty/src/pages/Dashboard.tsx:22",
+            "vitty/src/pages/TimeTable.tsx:29",
+            "vitty/src/pages/TimeTable.tsx:35",
+            "vitty/src/pages/TimeTable.tsx:36",
+            "vitty/src/store/TimeTableStore.tsx:27",
+            "vitty/src/store/TimeTableStore.tsx:29",
+            "vitty/src/store/authStore.tsx:30",
+            "vitty/src/store/authStore.tsx:50",
+            "vitty/src/store/authStore.tsx:52",
+            "vitty/src/utils/apicalls.tsx:17",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:34",
+            "vitty/src/utils/apicalls.tsx:41",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:70",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:90",
+            "vitty/src/utils/apicalls.tsx:97",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:126",
+            "vitty/src/utils/apicalls.tsx:127",
+            "vitty/src/utils/apicalls.tsx:128",
+            "vitty/src/utils/apicalls.tsx:131",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:161",
+            "vitty/src/utils/apicalls.tsx:173",
+            "vitty/src/utils/apicalls.tsx:186",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        },
+        {
+          "name": "myHeaders",
+          "defined_at_line": 179,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 12
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 30
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 66
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 86
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 140
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 179
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:12",
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:30",
+            "vitty/src/utils/apicalls.tsx:43",
+            "vitty/src/utils/apicalls.tsx:66",
+            "vitty/src/utils/apicalls.tsx:76",
+            "vitty/src/utils/apicalls.tsx:86",
+            "vitty/src/utils/apicalls.tsx:99",
+            "vitty/src/utils/apicalls.tsx:140",
+            "vitty/src/utils/apicalls.tsx:141",
+            "vitty/src/utils/apicalls.tsx:151",
+            "vitty/src/utils/apicalls.tsx:179",
+            "vitty/src/utils/apicalls.tsx:187"
+          ]
+        },
+        {
+          "name": "response",
+          "defined_at_line": 184,
+          "transformations": [
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 22
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 39
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 75
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 95
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 124
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 156
+            },
+            {
+              "file": "vitty/src/utils/apicalls.tsx",
+              "line": 184
+            }
+          ],
+          "used_in_files": [
+            "vitty/src/utils/apicalls.tsx:22",
+            "vitty/src/utils/apicalls.tsx:23",
+            "vitty/src/utils/apicalls.tsx:39",
+            "vitty/src/utils/apicalls.tsx:46",
+            "vitty/src/utils/apicalls.tsx:48",
+            "vitty/src/utils/apicalls.tsx:49",
+            "vitty/src/utils/apicalls.tsx:75",
+            "vitty/src/utils/apicalls.tsx:78",
+            "vitty/src/utils/apicalls.tsx:79",
+            "vitty/src/utils/apicalls.tsx:95",
+            "vitty/src/utils/apicalls.tsx:102",
+            "vitty/src/utils/apicalls.tsx:104",
+            "vitty/src/utils/apicalls.tsx:105",
+            "vitty/src/utils/apicalls.tsx:124",
+            "vitty/src/utils/apicalls.tsx:125",
+            "vitty/src/utils/apicalls.tsx:156",
+            "vitty/src/utils/apicalls.tsx:160",
+            "vitty/src/utils/apicalls.tsx:184",
+            "vitty/src/utils/apicalls.tsx:189"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "vitty/src/vite-env.d.ts",
+      "functions": null,
+      "variables": null
+    },
+    {
+      "file": "vitty/tailwind.config.js",
+      "functions": null,
+      "variables": null
+    },
+    {
+      "file": "vitty/vite.config.ts",
+      "functions": null,
+      "variables": null
+    }
+  ]
+}

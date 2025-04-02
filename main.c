@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <sys/stat.h>
 #include <pthread.h>
+#include <ctype.h>
 
 #define PORT 3000
 #define BUFFER_SIZE 8192
@@ -48,7 +49,11 @@ static void *handle_connection(void *arg)
     }
 
     // Process POST /receive
-    if (strncmp(buffer, "POST /receive HTTP/1.", 20) == 0)
+    char method[16] = {0};
+    char endpoint[BUFFER_SIZE] = {0};
+    sscanf(buffer, "%15s %s", method, endpoint);
+
+    if (strcmp(method, "POST") == 0 && strncmp(endpoint, "/receive", 8) == 0)
     {
         // minimal logging for production
         // Find the Content-Length header
@@ -90,51 +95,236 @@ static void *handle_connection(void *arg)
             send(new_socket, response, strlen(response), 0);
         }
     }
-    else if (strncmp(buffer, "OPTIONS /receive HTTP/1.", 23) == 0)
+    else if (strcmp(method, "OPTIONS") == 0 && strncmp(endpoint, "/receive", 8) == 0)
     {
         char *response = "HTTP/1.1 204 No Content\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\n\r\n";
         send(new_socket, response, strlen(response), 0);
     }
-    else if (strncmp(buffer, "GET /analysis HTTP/1.", 20) == 0)
+    // Add OPTIONS handling for /analysis routes
+    else if (strcmp(method, "OPTIONS") == 0 && strncmp(endpoint, "/analysis", 9) == 0)
     {
-        // Return the analysis data JSON file
-        FILE *analysis_file = fopen("analysis_data.json", "r");
+        char *response = "HTTP/1.1 204 No Content\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\n\r\n";
+        send(new_socket, response, strlen(response), 0);
+    }
+    else if (strcmp(method, "POST") == 0 && strncmp(endpoint, "/analysis", 9) == 0)
+    {
+        // Find the Content-Length header
+        char *content_length_str = strstr(buffer, "Content-Length:");
+        int content_length = content_length_str ? atoi(content_length_str + 15) : 0;
+
+        // Find the request body (after the header)
+        char *body = strstr(buffer, "\r\n\r\n");
+        if (body && content_length > 0)
+        {
+            body += 4;
+
+            // Parse the repository name from the request body
+            // Expecting format: repo_name=<repository_name>
+            char decoded_repo[BUFFER_SIZE] = {0};
+            char *repo_name_pair = strstr(body, "repo_name=");
+            if (repo_name_pair)
+            {
+                char *repo_value = repo_name_pair + 10; // Skip "repo_name="
+                // Copy until end of line or end of body
+                size_t i = 0;
+                while (repo_value[i] && repo_value[i] != '\r' && repo_value[i] != '\n' && i < BUFFER_SIZE - 1)
+                {
+                    decoded_repo[i] = repo_value[i];
+                    i++;
+                }
+                decoded_repo[i] = '\0';
+            }
+
+            char filename[BUFFER_SIZE] = {0};
+            if (strlen(decoded_repo) > 0)
+            {
+                snprintf(filename, sizeof(filename), "analysis_data_%s.json", decoded_repo);
+                printf("Looking for analysis file: %s\n", filename);
+            }
+            else
+            {
+                strcpy(filename, "analysis_data.json");
+            }
+
+            FILE *analysis_file = fopen(filename, "r");
+            if (analysis_file == NULL)
+            {
+                char response[BUFFER_SIZE];
+                snprintf(response, sizeof(response),
+                         "HTTP/1.1 404 Not Found\r\n"
+                         "Content-Type: text/plain\r\n"
+                         "Access-Control-Allow-Origin: *\r\n"
+                         "Access-Control-Allow-Methods: POST, OPTIONS\r\n"
+                         "Access-Control-Allow-Headers: Content-Type\r\n"
+                         "Content-Length: 26\r\n\r\n"
+                         "Analysis data not available");
+                send(new_socket, response, strlen(response), 0);
+            }
+            else
+            {
+                fseek(analysis_file, 0, SEEK_END);
+                long file_size = ftell(analysis_file);
+                fseek(analysis_file, 0, SEEK_SET);
+                char *file_content = malloc(file_size + 1);
+                if (file_content == NULL)
+                {
+                    fclose(analysis_file);
+                    char *response = "HTTP/1.1 500 Internal Server Error\r\n"
+                                     "Content-Type: text/plain\r\n"
+                                     "Access-Control-Allow-Origin: *\r\n"
+                                     "Access-Control-Allow-Methods: POST, OPTIONS\r\n"
+                                     "Access-Control-Allow-Headers: Content-Type\r\n"
+                                     "Content-Length: 28\r\n\r\n"
+                                     "Failed to allocate memory";
+                    send(new_socket, response, strlen(response), 0);
+                }
+                else
+                {
+                    size_t read_size = fread(file_content, 1, file_size, analysis_file);
+                    fclose(analysis_file);
+                    if (read_size != file_size)
+                    {
+                        free(file_content);
+                        char *response = "HTTP/1.1 500 Internal Server Error\r\n"
+                                         "Content-Type: text/plain\r\n"
+                                         "Access-Control-Allow-Origin: *\r\n"
+                                         "Access-Control-Allow-Methods: POST, OPTIONS\r\n"
+                                         "Access-Control-Allow-Headers: Content-Type\r\n"
+                                         "Content-Length: 23\r\n\r\n"
+                                         "Failed to read file";
+                        send(new_socket, response, strlen(response), 0);
+                    }
+                    else
+                    {
+                        file_content[file_size] = '\0';
+                        char response_header[BUFFER_SIZE];
+                        sprintf(response_header,
+                                "HTTP/1.1 200 OK\r\n"
+                                "Content-Type: application/json\r\n"
+                                "Access-Control-Allow-Origin: *\r\n"
+                                "Access-Control-Allow-Methods: POST, OPTIONS\r\n"
+                                "Access-Control-Allow-Headers: Content-Type\r\n"
+                                "Content-Length: %ld\r\n\r\n",
+                                file_size);
+                        send(new_socket, response_header, strlen(response_header), 0);
+                        send(new_socket, file_content, file_size, 0);
+                        free(file_content);
+                    }
+                }
+            }
+        }
+        else
+        {
+            char *response = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Methods: POST, OPTIONS\r\nAccess-Control-Allow-Headers: Content-Type\r\nContent-Length: 14\r\n\r\nMissing payload";
+            send(new_socket, response, strlen(response), 0);
+        }
+    }
+    else if (strcmp(method, "GET") == 0 && strncmp(endpoint, "/analysis", 9) == 0)
+    {
+        char filename[BUFFER_SIZE] = {0};
+        if (strncmp(endpoint, "/analysis/", 10) == 0)
+        {
+            // Endpoint includes a repo name: /analysis/{reponame}
+            char *repo = endpoint + 10;
+            // Remove any query parameters or fragments
+            char *query = strchr(repo, '?');
+            if (query)
+                *query = '\0';
+
+            // Simple URL decoding for the repo name
+            char decoded_repo[BUFFER_SIZE] = {0};
+            size_t i = 0, j = 0;
+            while (repo[i] && j < BUFFER_SIZE - 1)
+            {
+                if (repo[i] == '%' && isxdigit(repo[i + 1]) && isxdigit(repo[i + 2]))
+                {
+                    char hex[3] = {repo[i + 1], repo[i + 2], '\0'};
+                    decoded_repo[j++] = (char)strtol(hex, NULL, 16);
+                    i += 3;
+                }
+                else
+                {
+                    decoded_repo[j++] = repo[i++];
+                }
+            }
+            decoded_repo[j] = '\0';
+
+            snprintf(filename, sizeof(filename), "analysis_data_%s.json", decoded_repo);
+            printf("Looking for analysis file: %s\n", filename);
+        }
+        else if (strcmp(endpoint, "/analysis") == 0)
+        {
+            strcpy(filename, "analysis_data.json");
+        }
+        else
+        {
+            // Invalid URL format for /analysis endpoint
+            char *response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 9\r\n\r\nNot Found";
+            send(new_socket, response, strlen(response), 0);
+            close(new_socket);
+            return NULL;
+        }
+
+        FILE *analysis_file = fopen(filename, "r");
         if (analysis_file == NULL)
         {
-            char *response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 26\r\n\r\nAnalysis data not available";
+            char response[BUFFER_SIZE];
+            snprintf(response, sizeof(response),
+                     "HTTP/1.1 404 Not Found\r\n"
+                     "Content-Type: text/plain\r\n"
+                     "Access-Control-Allow-Origin: *\r\n"
+                     "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+                     "Access-Control-Allow-Headers: Content-Type\r\n"
+                     "Content-Length: 26\r\n\r\n"
+                     "Analysis data not available");
             send(new_socket, response, strlen(response), 0);
         }
         else
         {
-            // Get file size
             fseek(analysis_file, 0, SEEK_END);
             long file_size = ftell(analysis_file);
             fseek(analysis_file, 0, SEEK_SET);
-
-            // Read file content
             char *file_content = malloc(file_size + 1);
             if (file_content == NULL)
             {
                 fclose(analysis_file);
-                char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 28\r\n\r\nFailed to allocate memory";
+                char *response = "HTTP/1.1 500 Internal Server Error\r\n"
+                                 "Content-Type: text/plain\r\n"
+                                 "Access-Control-Allow-Origin: *\r\n"
+                                 "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+                                 "Access-Control-Allow-Headers: Content-Type\r\n"
+                                 "Content-Length: 28\r\n\r\n"
+                                 "Failed to allocate memory";
                 send(new_socket, response, strlen(response), 0);
             }
             else
             {
                 size_t read_size = fread(file_content, 1, file_size, analysis_file);
                 fclose(analysis_file);
-
                 if (read_size != file_size)
                 {
                     free(file_content);
-                    char *response = "HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: 23\r\n\r\nFailed to read file";
+                    char *response = "HTTP/1.1 500 Internal Server Error\r\n"
+                                     "Content-Type: text/plain\r\n"
+                                     "Access-Control-Allow-Origin: *\r\n"
+                                     "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+                                     "Access-Control-Allow-Headers: Content-Type\r\n"
+                                     "Content-Length: 23\r\n\r\n"
+                                     "Failed to read file";
                     send(new_socket, response, strlen(response), 0);
                 }
                 else
                 {
                     file_content[file_size] = '\0';
                     char response_header[BUFFER_SIZE];
-                    sprintf(response_header, "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: %ld\r\n\r\n", file_size);
+                    sprintf(response_header,
+                            "HTTP/1.1 200 OK\r\n"
+                            "Content-Type: application/json\r\n"
+                            "Access-Control-Allow-Origin: *\r\n"
+                            "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+                            "Access-Control-Allow-Headers: Content-Type\r\n"
+                            "Content-Length: %ld\r\n\r\n",
+                            file_size);
                     send(new_socket, response_header, strlen(response_header), 0);
                     send(new_socket, file_content, file_size, 0);
                     free(file_content);
@@ -299,98 +489,49 @@ ReceivePayload parse_payload(const char *body)
 
 bool clone_repository(ReceivePayload *payload)
 {
-    // Reduced logging messages
-    // Extract repository name as before...
-    char git_command[BUFFER_SIZE] = {0};
+    // Extract repository name from the full URL using the last slash.
     char repo_name[BUFFER_SIZE] = {0};
-
-    const char *slash = strrchr(payload->github_link, '/');
-    if (slash)
+    char *last_slash = strrchr(payload->github_link, '/');
+    if (last_slash && *(last_slash + 1) != '\0')
     {
-        const char *dot_git = strstr(slash, ".git");
-        if (dot_git)
+        snprintf(repo_name, sizeof(repo_name), "%s", last_slash + 1);
+        // Remove ".git" suffix if present.
+        char *dot = strstr(repo_name, ".git");
+        if (dot)
         {
-            strncpy(repo_name, slash + 1, dot_git - (slash + 1));
-            repo_name[dot_git - (slash + 1)] = '\0';
-        }
-        else
-        {
-            strcpy(repo_name, slash + 1);
+            *dot = '\0';
         }
     }
     else
     {
-        strcpy(repo_name, payload->github_link);
+        strcpy(repo_name, "repo");
     }
 
+    // Check if repository directory exists.
     struct stat st = {0};
     if (stat(repo_name, &st) == 0 && S_ISDIR(st.st_mode))
     {
-        // Pulling updates quietly
         char cd_command[BUFFER_SIZE] = {0};
         sprintf(cd_command, "cd %s && git pull -q", repo_name);
         int pull_result = system(cd_command);
         if (pull_result != 0)
         {
-            // Only log a warning if pull fails
+            // Log a warning but continue
             fprintf(stderr, "Warning: Failed to pull latest changes. Exit code: %d\n", pull_result);
         }
     }
     else
     {
-        // Cloning repository quietly (-q flag added)
-        if (payload->personal_access_token && strlen(payload->personal_access_token) > 0)
+        // Use the provided full URL directly.
+        char git_command[BUFFER_SIZE] = {0};
+        if (payload->branch && strlen(payload->branch) > 0)
         {
-            char url_with_token[BUFFER_SIZE] = {0};
-            const char *https_prefix = "https://";
-            char *url_start = payload->github_link;
-            if (strncmp(payload->github_link, https_prefix, strlen(https_prefix)) == 0)
-            {
-                url_start = payload->github_link + strlen(https_prefix);
-                sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, url_start);
-            }
-            else
-            {
-                sprintf(url_with_token, "https://%s@%s", payload->personal_access_token, payload->github_link);
-            }
-
-            if (payload->branch && strlen(payload->branch) > 0)
-            {
-                sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, url_with_token);
-            }
-            else
-            {
-                sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", url_with_token);
-            }
+            sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, payload->github_link);
         }
         else
         {
-            if (payload->branch && strlen(payload->branch) > 0)
-            {
-                sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, payload->github_link);
-            }
-            else
-            {
-                sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", payload->github_link);
-            }
+            sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", payload->github_link);
         }
-
-        // Redact token from logs if any (silent log)
-        char *redacted_command = strdup(git_command);
-        if (payload->personal_access_token)
-        {
-            char *token_pos = strstr(redacted_command, payload->personal_access_token);
-            if (token_pos)
-            {
-                for (int i = 0; i < strlen(payload->personal_access_token); i++)
-                {
-                    token_pos[i] = '*';
-                }
-            }
-        }
-        // Optionally log only on error:
-        // fprintf(stderr, "Executing: %s\n", redacted_command);
-        free(redacted_command);
 
         int result = system(git_command);
         if (result != 0)

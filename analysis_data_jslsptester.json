@@ -1,0 +1,278 @@
+[
+  {
+    "file": "jslsptester/factorial.js",
+    "functions": [
+      {
+        "name": "factorial",
+        "start_line": 1,
+        "end_line": 1,
+        "calls": [
+          {
+            "name": "compute",
+            "line": 2
+          },
+          {
+            "name": "compute",
+            "line": 3
+          },
+          {
+            "name": "compute",
+            "line": 6
+          }
+        ]
+      },
+      {
+        "name": "compute",
+        "start_line": 2,
+        "end_line": 2,
+        "calls": [
+          {
+            "name": "factorial",
+            "line": 1
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "res",
+        "defined_at_line": 3,
+        "transformations": [
+          {
+            "file": "jslsptester/factorial.js",
+            "line": 3
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/factorial.js:3",
+          "jslsptester/factorial.js:4",
+          "jslsptester/fibonacci.js:5",
+          "jslsptester/fibonacci.js:6",
+          "jslsptester/gcd.js:6",
+          "jslsptester/gcd.js:7"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "jslsptester/fibonacci.js",
+    "functions": [
+      {
+        "name": "fibonacci",
+        "start_line": 3,
+        "end_line": 3,
+        "calls": [
+          {
+            "name": "fibRecursive",
+            "line": 4
+          },
+          {
+            "name": "fibRecursive",
+            "line": 5
+          },
+          {
+            "name": "fibRecursive",
+            "line": 5
+          },
+          {
+            "name": "fibRecursive",
+            "line": 18
+          }
+        ]
+      },
+      {
+        "name": "fibRecursive",
+        "start_line": 4,
+        "end_line": 4,
+        "calls": [
+          {
+            "name": "fibonacci",
+            "line": 3
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "res",
+        "defined_at_line": 5,
+        "transformations": [
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 5
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/factorial.js:3",
+          "jslsptester/factorial.js:4",
+          "jslsptester/fibonacci.js:5",
+          "jslsptester/fibonacci.js:6",
+          "jslsptester/gcd.js:6",
+          "jslsptester/gcd.js:7"
+        ]
+      },
+      {
+        "name": "fibIterative",
+        "defined_at_line": 9,
+        "transformations": [
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 9
+          },
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 13
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/fibonacci.js:9",
+          "jslsptester/fibonacci.js:13",
+          "jslsptester/fibonacci.js:15",
+          "jslsptester/fibonacci.js:18"
+        ]
+      },
+      {
+        "name": "prev",
+        "defined_at_line": 10,
+        "transformations": [
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 10
+          },
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 14
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/fibonacci.js:10",
+          "jslsptester/fibonacci.js:13",
+          "jslsptester/fibonacci.js:14"
+        ]
+      },
+      {
+        "name": "current",
+        "defined_at_line": 11,
+        "transformations": [
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 11
+          },
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 15
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/fibonacci.js:11",
+          "jslsptester/fibonacci.js:13",
+          "jslsptester/fibonacci.js:14",
+          "jslsptester/fibonacci.js:15"
+        ]
+      },
+      {
+        "name": "i",
+        "defined_at_line": 12,
+        "transformations": [
+          {
+            "file": "jslsptester/fibonacci.js",
+            "line": 12
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/fibonacci.js:12"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "jslsptester/gcd.js",
+    "functions": [
+      {
+        "name": "gcd",
+        "start_line": 4,
+        "end_line": 4,
+        "calls": [
+          {
+            "name": "compute",
+            "line": 5
+          },
+          {
+            "name": "compute",
+            "line": 6
+          },
+          {
+            "name": "compute",
+            "line": 9
+          }
+        ]
+      },
+      {
+        "name": "compute",
+        "start_line": 5,
+        "end_line": 5,
+        "calls": [
+          {
+            "name": "gcd",
+            "line": 4
+          }
+        ]
+      }
+    ],
+    "variables": [
+      {
+        "name": "math",
+        "defined_at_line": 2,
+        "transformations": [
+          {
+            "file": "jslsptester/gcd.js",
+            "line": 2
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/gcd.js:2",
+          "jslsptester/gcd.js:6"
+        ]
+      },
+      {
+        "name": "res",
+        "defined_at_line": 6,
+        "transformations": [
+          {
+            "file": "jslsptester/gcd.js",
+            "line": 6
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/factorial.js:3",
+          "jslsptester/factorial.js:4",
+          "jslsptester/fibonacci.js:5",
+          "jslsptester/fibonacci.js:6",
+          "jslsptester/gcd.js:6",
+          "jslsptester/gcd.js:7"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "jslsptester/main.js",
+    "functions": null,
+    "variables": [
+      {
+        "name": "num",
+        "defined_at_line": 4,
+        "transformations": [
+          {
+            "file": "jslsptester/main.js",
+            "line": 4
+          }
+        ],
+        "used_in_files": [
+          "jslsptester/main.js:4",
+          "jslsptester/main.js:5",
+          "jslsptester/main.js:6"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "fibonacci.js",
+      "category": "file",
+      "path": "jslsptester/fibonacci.js",
+      "content": "import { factorial } from \"./factorial.js\";\n\nexport function fibonacci(n) {\n    function fibRecursive(x) {\n        let res = x \u003c= 1 ? x : fibRecursive(x - 1) + fibRecursive(x - 2);\n        return res;\n    }\n    \n    let fibIterative = 0;\n    let prev = 0;\n    let current = 1;\n    for (let i = 2; i \u003c= n; i++) {\n        fibIterative = prev + current;\n        prev = current;\n        current = fibIterative;\n    }\n\n    return { recursive: fibRecursive(n), iterative: fibIterative, fact: factorial(n) };\n}\n\n"
+    },
+    {
+      "id": 1,
+      "name": "gcd.js",
+      "category": "file",
+      "path": "jslsptester/gcd.js",
+      "content": "import { create, all } from \"mathjs\";\nconst math = create(all);\n\nexport function gcd(a, b) {\n    function compute(x, y) {\n        let res = y === 0 ? x : compute(y, math.mod(x, y));\n        return res;\n    }\n    return compute(a, b);\n}\n",
+      "dependencies": [
+        "mathjs"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "main.js",
+      "category": "file",
+      "path": "jslsptester/main.js",
+      "content": "import { fibonacci } from \"./fibonacci.js\";\nimport { gcd } from \"./gcd.js\";\n\nconst num = 5;\nconsole.log(`Fibonacci(${num}):`, fibonacci(num));\nconsole.log(`GCD(${num}, 10):`, gcd(num, 10));\n"
+    },
+    {
+      "id": 3,
+      "name": "factorial.js",
+      "category": "file",
+      "path": "jslsptester/factorial.js",
+      "content": "export function factorial(n) {\n    function compute(x) {\n        let res = x \u003c= 1 ? 1 : x * compute(x - 1);\n        return res;\n    }\n    return compute(n);\n}\n"
+    },
+    {
+      "id": 4,
+      "name": "mathjs",
+      "category": "library"
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "target": 4,
+      "relation": "depends"
+    }
+  ],
+  "language": "javascript"
+}

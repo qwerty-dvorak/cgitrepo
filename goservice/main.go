@@ -1,14 +1,21 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // Global repo directory
 var RepoDir string
+
+type AnalysisData struct {
+	Data []JSAnalysisReport `json:"data"`
+}
+
 
 func main() {
 	if len(os.Args) < 2 {
@@ -17,6 +24,9 @@ func main() {
 	}
 	repoDir := os.Args[1]
 	RepoDir = repoDir
+
+	// Extract repo name from the path
+	repoName := filepath.Base(repoDir)
 
 	// Detect languages used in the repository.
 	languages, err := DetectLanguages(repoDir)
@@ -136,34 +146,40 @@ func main() {
 		log.Fatalf("Error building graph: %v", err)
 	}
 
+	// Prepare file names with repo name
+	graphDataFile := fmt.Sprintf("graphdata_%s.json", sanitizeFileName(repoName))
+	analysisDataFile := fmt.Sprintf("analysis_data_%s.json", sanitizeFileName(repoName))
+
 	// Save the dependency graph as JSON.
-	err = SaveGraphData("graphdata.json", graph)
+	err = SaveGraphData(graphDataFile, graph)
 	if err != nil {
 		log.Fatalf("Error writing graph data: %v", err)
 	}
-	fmt.Println("Graph data saved to graphdata.json")
+	fmt.Printf("Graph data saved to %s\n", graphDataFile)
 
-	// Save the aggregated analysis reports.
+	// Create a combined analysis data structure
+
+	// Save the combined JSON with jsReports in the data field
 	if jsDetected && len(jsReports) > 0 {
-		err = SaveJSAnalysisReports(jsReports, "analysis_data.json")
+		err = SaveCombinedAnalysisData(jsReports, analysisDataFile)
 		if err != nil {
-			log.Fatalf("Error writing JS analysis data: %v", err)
+			log.Fatalf("Error writing combined analysis data: %v", err)
 		}
-		fmt.Println("JS analysis data saved to analysis_data.json")
+		fmt.Printf("Combined analysis data saved to %s\n", analysisDataFile)
 	}
 	if len(goReports) > 0 {
-		err = SaveGoAnalysisReports(goReports, "analysis_data.json")
+		err = SaveGoAnalysisReports(goReports, analysisDataFile)
 		if err != nil {
 			log.Fatalf("Error writing Go analysis data: %v", err)
 		}
-		fmt.Println("Go analysis data saved to analysis_data.json")
+		fmt.Printf("Go analysis data saved to %s\n", analysisDataFile)
 	}
 	if len(pyReports) > 0 {
-		err = SavePyAnalysisReports(pyReports, "analysis_data.json")
+		err = SavePyAnalysisReports(pyReports, analysisDataFile)
 		if err != nil {
 			log.Fatalf("Error writing Python analysis data: %v", err)
 		}
-		fmt.Println("Python analysis data saved to analysis_data.json")
+		fmt.Printf("Python analysis data saved to %s\n", analysisDataFile)
 	}
 }
 
@@ -189,7 +205,43 @@ func languageForFile(file string) string {
 	return "unknown"
 }
 
+// sanitizeFileName removes or replaces characters that might be problematic in filenames
+func sanitizeFileName(name string) string {
+	// Replace spaces and special characters with underscores
+	name = strings.ReplaceAll(name, " ", "_")
+	name = strings.ReplaceAll(name, "/", "_")
+	name = strings.ReplaceAll(name, "\\", "_")
+	name = strings.ReplaceAll(name, ":", "_")
+	name = strings.ReplaceAll(name, "*", "_")
+	name = strings.ReplaceAll(name, "?", "_")
+	name = strings.ReplaceAll(name, "\"", "_")
+	name = strings.ReplaceAll(name, "<", "_")
+	name = strings.ReplaceAll(name, ">", "_")
+	name = strings.ReplaceAll(name, "|", "_")
+	return name
+}
+
 // buildGraphWrapper should remain as a thin wrapper to call BuildGraph from graph_builder.go.
 func buildGraphWrapper(depTree map[string][]string, pkgDeps map[string]bool, mainLang string, prismaSchema *PrismaSchema) (GraphData, error) {
 	return BuildGraph(depTree, pkgDeps, mainLang, prismaSchema)
 }
+
+func SaveCombinedAnalysisData(jsReports []JSAnalysisReport, filePath string) error {
+	analysisData := AnalysisData{
+		Data: jsReports,
+	}
+	
+	jsonData, err := json.MarshalIndent(analysisData, "", "  ")
+	if err != nil {
+		return fmt.Errorf("error marshaling analysis data: %w", err)
+	}
+	
+	err = os.WriteFile(filePath, jsonData, 0644)
+	if err != nil {
+		return fmt.Errorf("error writing analysis data to file: %w", err)
+	}
+	
+	return nil
+}
+
+

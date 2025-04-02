@@ -8,8 +8,9 @@
 #include <sys/stat.h>
 #include <pthread.h>
 #include <ctype.h>
+#include <time.h>
 
-#define PORT 3000
+#define PORT 3001
 #define BUFFER_SIZE 8192
 
 typedef struct
@@ -31,6 +32,160 @@ RequestResult handle_receive_request(char *request_body);
 ReceivePayload parse_payload(const char *body);
 bool clone_repository(ReceivePayload *payload);
 void free_payload(ReceivePayload payload);
+
+/**
+ * Trims trailing carriage returns and whitespace from a string
+ * @param str The string to trim
+ * @return Pointer to the same string for convenience
+ */
+static char *trim_string(char *str)
+{
+    if (!str)
+        return NULL;
+
+    size_t len = strlen(str);
+    if (len == 0)
+        return str;
+
+    // Remove trailing carriage return and whitespace
+    while (len > 0 && (str[len - 1] == '\r' || str[len - 1] == ' ' || str[len - 1] == '\t'))
+    {
+        str[len - 1] = '\0';
+        len--;
+    }
+
+    return str;
+}
+
+/**
+ * Processes a single key-value pair and updates the payload accordingly
+ * @param payload Pointer to the payload structure to update
+ * @param key The key string
+ * @param value The value string
+ * @return true if the key was recognized and processed, false otherwise
+ */
+static bool process_key_value_pair(ReceivePayload *payload, const char *key, const char *value)
+{
+    if (!payload || !key || !value)
+        return false;
+
+    bool recognized = true;
+
+    if (strcmp(key, "github_link") == 0)
+    {
+        free(payload->github_link); // Free any previous value
+        payload->github_link = strdup(value);
+        printf("GitHub Link: %s\n", payload->github_link ? payload->github_link : "ERROR: Failed to allocate memory");
+    }
+    else if (strcmp(key, "branch") == 0)
+    {
+        free(payload->branch); // Free any previous value
+        payload->branch = strdup(value);
+        printf("Branch: %s\n", payload->branch ? payload->branch : "ERROR: Failed to allocate memory");
+    }
+    else if (strcmp(key, "personal_access_token") == 0)
+    {
+        free(payload->personal_access_token); // Free any previous value
+        payload->personal_access_token = strdup(value);
+        printf("Personal Access Token: [REDACTED]\n");
+    }
+    else if (strcmp(key, "graph_data") == 0)
+    {
+        free(payload->graph_data); // Free any previous value
+        payload->graph_data = strdup(value);
+        printf("Graph Data: [%zu bytes]\n", value ? strlen(value) : 0);
+    }
+    else
+    {
+        // Unrecognized key
+        recognized = false;
+    }
+
+    return recognized;
+}
+
+/**
+ * Parse a line containing a key-value pair in the format "key=value"
+ * @param line String containing the line to parse
+ * @param payload Pointer to the payload structure to update
+ * @return true if parsing was successful, false otherwise
+ */
+static bool parse_line(char *line, ReceivePayload *payload)
+{
+    if (!line || !payload)
+        return false;
+
+    char *saveptr = NULL;
+    char *key = strtok_r(line, "=", &saveptr);
+    if (!key)
+        return false;
+
+    // Trim whitespace from key
+    key = trim_string(key);
+    if (strlen(key) == 0)
+        return false;
+
+    // Get value (rest of line after '=')
+    char *value = strtok_r(NULL, "", &saveptr);
+    if (!value)
+        return false;
+
+    // Trim whitespace from value
+    value = trim_string(value);
+
+    // Process the key-value pair
+    return process_key_value_pair(payload, key, value);
+}
+
+/**
+ * Parse simple key-value pairs format (key=value, one per line)
+ * @param body String containing the payload to parse
+ * @return Initialized ReceivePayload structure
+ */
+ReceivePayload parse_payload(const char *body)
+{
+    // Initialize payload with NULL values
+    ReceivePayload payload = {NULL, NULL, NULL, NULL};
+
+    if (!body)
+    {
+        fprintf(stderr, "Error: NULL payload body provided\n");
+        return payload;
+    }
+
+    // Create a copy of the body to work with
+    char *body_copy = strdup(body);
+    if (!body_copy)
+    {
+        fprintf(stderr, "Error: Failed to allocate memory for payload parsing\n");
+        return payload;
+    }
+
+    char *line;
+    char *saveptr = NULL;
+    int line_count = 0;
+    int processed_count = 0;
+
+    // Split into lines and parse each key=value pair
+    line = strtok_r(body_copy, "\n", &saveptr);
+    while (line != NULL)
+    {
+        line_count++;
+        if (parse_line(line, &payload))
+        {
+            processed_count++;
+        }
+        line = strtok_r(NULL, "\n", &saveptr);
+    }
+
+    // Free the copy of the body
+    free(body_copy);
+
+    printf("Payload parsing complete: %d of %d lines processed\n",
+           processed_count, line_count);
+
+    return payload;
+}
 
 // New connection handler function
 static void *handle_connection(void *arg)
@@ -55,10 +210,27 @@ static void *handle_connection(void *arg)
 
     if (strcmp(method, "POST") == 0 && strncmp(endpoint, "/receive", 8) == 0)
     {
-        // minimal logging for production
         // Find the Content-Length header
         char *content_length_str = strstr(buffer, "Content-Length:");
-        int content_length = content_length_str ? atoi(content_length_str + 15) : 0;
+        printf("Searching for Content-Length header... %s\n",
+               content_length_str ? "found" : "not found");
+
+        int content_length = 0;
+        if (content_length_str)
+        {
+            content_length = atoi(content_length_str + 15);
+            printf("Content-Length value: %d bytes\n", content_length);
+
+            if (content_length <= 0)
+            {
+                printf("Warning: Invalid Content-Length value detected (%d)\n", content_length);
+            }
+            else if (content_length > BUFFER_SIZE)
+            {
+                printf("Warning: Content-Length (%d) exceeds buffer size (%d)\n",
+                       content_length, BUFFER_SIZE);
+            }
+        }
 
         // Find the request body (after the header)
         char *body = strstr(buffer, "\r\n\r\n");
@@ -66,7 +238,7 @@ static void *handle_connection(void *arg)
         {
             body += 4;
             RequestResult result = handle_receive_request(body);
-            // printf("Request processing result: success=%s, graph data %s\n", 
+            // printf("Request processing result: success=%s, graph data %s\n",
             //        result.success ? "true" : "false",
             //        result.graph_data ? "available" : "not available");
 
@@ -492,58 +664,6 @@ RequestResult handle_receive_request(char *request_body)
     return result;
 }
 
-// Parse simple key-value pairs format (key=value, one per line)
-ReceivePayload parse_payload(const char *body)
-{
-    ReceivePayload payload = {NULL, NULL, NULL, NULL};
-    char *body_copy = strdup(body);
-    char *line, *saveptr1, *saveptr2;
-
-    // Split into lines and parse each key=value pair
-    line = strtok_r(body_copy, "\n", &saveptr1);
-    while (line != NULL)
-    {
-        char *key = strtok_r(line, "=", &saveptr2);
-        char *value = NULL;
-
-        if (key != NULL)
-        {
-            value = strtok_r(NULL, "", &saveptr2);
-
-            if (value != NULL)
-            {
-                // Remove any trailing carriage return
-                int len = strlen(value);
-                if (len > 0 && value[len - 1] == '\r')
-                {
-                    value[len - 1] = '\0';
-                }
-
-                if (strcmp(key, "github_link") == 0)
-                {
-                    payload.github_link = strdup(value);
-                    printf("GitHub Link: %s\n", payload.github_link);
-                }
-                else if (strcmp(key, "branch") == 0)
-                {
-                    payload.branch = strdup(value);
-                    printf("Branch: %s\n", payload.branch);
-                }
-                else if (strcmp(key, "personal_access_token") == 0)
-                {
-                    payload.personal_access_token = strdup(value);
-                    printf("Personal Access Token: [REDACTED]\n");
-                }
-            }
-        }
-
-        line = strtok_r(NULL, "\n", &saveptr1);
-    }
-
-    free(body_copy);
-    return payload;
-}
-
 bool clone_repository(ReceivePayload *payload)
 {
     // Extract repository name from the full URL using the last slash.
@@ -564,105 +684,162 @@ bool clone_repository(ReceivePayload *payload)
         strcpy(repo_name, "repo");
     }
 
-    // Flag to track if code has changed and we need to run codeflow
     bool needs_codeflow = false;
 
-    // Check if repository directory exists.
+    // Parse GitHub URL to get owner and repo
+    char github_owner[BUFFER_SIZE] = {0};
+    char github_repo[BUFFER_SIZE] = {0};
+
+    char *github_url_copy = strdup(payload->github_link);
+    if (!github_url_copy)
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        return false;
+    }
+    char *dot_git = strstr(github_url_copy, ".git");
+    if (dot_git)
+    {
+        *dot_git = '\0';
+    }
+    char *github_com = strstr(github_url_copy, "github.com/");
+    if (github_com)
+    {
+        char *owner_start = github_com + 11; // Skip "github.com/"
+        char *repo_divider = strchr(owner_start, '/');
+        if (repo_divider)
+        {
+            size_t owner_len = repo_divider - owner_start;
+            strncpy(github_owner, owner_start, owner_len);
+            github_owner[owner_len] = '\0';
+            strncpy(github_repo, repo_divider + 1, BUFFER_SIZE - 1);
+        }
+    }
+    free(github_url_copy);
+    if (github_owner[0] == '\0' || github_repo[0] == '\0')
+    {
+        fprintf(stderr, "Failed to parse GitHub URL: %s\n", payload->github_link);
+        return false;
+    }
+
+    // Remove existing directory if needed.
     struct stat st = {0};
     if (stat(repo_name, &st) == 0 && S_ISDIR(st.st_mode))
     {
-        // Check for and remove stale lock files if they exist
-        char remove_locks_cmd[BUFFER_SIZE] = {0};
-        sprintf(remove_locks_cmd, "rm -f %s/.git/index.lock %s/.git/HEAD.lock 2>/dev/null",
-                repo_name, repo_name);
-        system(remove_locks_cmd);
+        char rm_command[BUFFER_SIZE] = {0};
+        sprintf(rm_command, "rm -rf %s", repo_name);
+        system(rm_command);
+        printf("Removed existing directory %s for fresh download\n", repo_name);
+    }
 
-        // Get current commit hash before pull
-        char hash_cmd[BUFFER_SIZE] = {0};
-        sprintf(hash_cmd, "cd %s && git rev-parse HEAD 2>/dev/null", repo_name);
-        FILE *hash_pipe = popen(hash_cmd, "r");
-        char before_hash[41] = {0};
-        if (hash_pipe && fgets(before_hash, 41, hash_pipe))
-        {
-            pclose(hash_pipe);
-
-            // Pull the latest changes
-            char cd_command[BUFFER_SIZE] = {0};
-            sprintf(cd_command, "cd %s && git pull -q", repo_name);
-            int pull_result = system(cd_command);
-            if (pull_result != 0)
-            {
-                fprintf(stderr, "Warning: Failed to pull latest changes. Exit code: %d\n", pull_result);
-                needs_codeflow = true; // Run codeflow anyway as fallback
-            }
-            else
-            {
-                // Get hash after pull to see if anything changed
-                hash_pipe = popen(hash_cmd, "r");
-                char after_hash[41] = {0};
-                if (hash_pipe && fgets(after_hash, 41, hash_pipe))
-                {
-                    pclose(hash_pipe);
-                    // Compare hashes to determine if codeflow should run
-                    needs_codeflow = (strcmp(before_hash, after_hash) != 0);
-                    if (!needs_codeflow)
-                    {
-                        printf("Repository is already up-to-date. Skipping codeflow.\n");
-                    }
-                }
-                else
-                {
-                    needs_codeflow = true; // If we can't verify, assume changes
-                    if (hash_pipe)
-                        pclose(hash_pipe);
-                }
-            }
-        }
-        else
-        {
-            needs_codeflow = true; // If we can't verify, assume changes
-            if (hash_pipe)
-                pclose(hash_pipe);
-        }
+    // Determine branch to use.
+    char branch[BUFFER_SIZE] = {0};
+    if (payload->branch && strlen(payload->branch) > 0)
+    {
+        strncpy(branch, payload->branch, BUFFER_SIZE - 1);
     }
     else
     {
-        // Clone the repository for the first time
-        char git_command[BUFFER_SIZE] = {0};
-        if (payload->branch && strlen(payload->branch) > 0)
+        strcpy(branch, "main"); // Default branch is 'main'
+    }
+
+    // Download zip file directly into the current folder as "repo.zip"
+    char download_command[BUFFER_SIZE * 2] = {0};
+    sprintf(download_command,
+            "curl -sL https://github.com/%s/%s/archive/refs/heads/%s.zip -o repo.zip",
+            github_owner, github_repo, branch);
+    printf("Downloading repository archive...\n");
+    int result = system(download_command);
+    if (result != 0)
+    {
+        fprintf(stderr, "Failed to download repository archive. Exit code: %d\n", result);
+        if (strcmp(branch, "main") == 0 && (!payload->branch || strlen(payload->branch) == 0))
         {
-            sprintf(git_command, "git -c core.sharedRepository=group clone -q -b %s %s", payload->branch, payload->github_link);
+            strcpy(branch, "master");
+            sprintf(download_command,
+                    "curl -sL https://github.com/%s/%s/archive/refs/heads/%s.zip -o repo.zip",
+                    github_owner, github_repo, branch);
+            printf("Trying 'master' branch instead...\n");
+            result = system(download_command);
+            if (result != 0)
+            {
+                fprintf(stderr, "Failed to download repository archive (master branch). Exit code: %d\n", result);
+                return false;
+            }
         }
         else
         {
-            sprintf(git_command, "git -c core.sharedRepository=group clone -q %s", payload->github_link);
-        }
-
-        int result = system(git_command);
-        if (result != 0)
-        {
-            fprintf(stderr, "Failed to clone repository. Exit code: %d\n", result);
             return false;
         }
-        needs_codeflow = true; // Always run codeflow on fresh clone
     }
 
-    printf("%s repository %s\n", needs_codeflow ? "Cloned/Updated" : "Already up-to-date", repo_name);
+    // Extract the zip file in the current folder.
+    char extract_command[BUFFER_SIZE] = {0};
+    sprintf(extract_command, "unzip -q repo.zip");
+    result = system(extract_command);
+    if (result != 0)
+    {
+        fprintf(stderr, "Failed to extract repository archive. Exit code: %d\n", result);
+        return false;
+    }
 
-    // Only execute codeflow if we cloned a new repo or pulled changes
+    // Move the extracted directory (typically named {repo}-{branch}) to the final repo_name.
+    char move_command[BUFFER_SIZE * 2] = {0};
+    sprintf(move_command, "mv %s-%s %s", github_repo, branch, repo_name);
+    result = system(move_command);
+    if (result != 0)
+    {
+        fprintf(stderr, "Failed to move extracted directory. Exit code: %d\n", result);
+        return false;
+    }
+
+    // Remove the downloaded zip file.
+    system("rm -f repo.zip");
+
+    printf("Downloaded repository %s (branch: %s) without git history\n", repo_name, branch);
+    needs_codeflow = true;
+
+    // Execute codeflow on the downloaded repository.
     if (needs_codeflow)
     {
         char codeflow_command[BUFFER_SIZE] = {0};
         sprintf(codeflow_command, "./goservice/codeflow %s", repo_name);
+        printf("=== CODEFLOW EXECUTION ===\n");
+        printf("Command: %s\n", codeflow_command);
+        printf("Repository: %s\n", repo_name);
+        printf("Branch: %s\n", branch);
+        printf("Starting codeflow analysis...\n");
+
+        time_t start_time = time(NULL);
         int codeflow_result = system(codeflow_command);
+        time_t end_time = time(NULL);
+        double elapsed_seconds = difftime(end_time, start_time);
         if (codeflow_result != 0)
         {
-            fprintf(stderr, "Failed to execute codeflow. Exit code: %d\n", codeflow_result);
+            fprintf(stderr, "Codeflow execution failed with exit code: %d\n", codeflow_result);
+            fprintf(stderr, "Command was: %s\n", codeflow_command);
+            fprintf(stderr, "Execution time: %.1f seconds\n", elapsed_seconds);
         }
         else
         {
-            printf("Successfully executed codeflow for %s\n", repo_name);
+            printf("Codeflow execution successful!\n");
+            printf("Execution time: %.1f seconds\n", elapsed_seconds);
+            printf("Analysis complete for repository: %s\n", repo_name);
+            printf("Output files should be generated in the current directory\n");
+
+            char expected_file[BUFFER_SIZE] = {0};
+            sprintf(expected_file, "graphdata_%s.json", repo_name);
+            struct stat st;
+            if (stat(expected_file, &st) == 0)
+            {
+                printf("Verified: Output file %s exists (%.2f KB)\n",
+                       expected_file, (float)st.st_size / 1024);
+            }
+            else
+            {
+                printf("Warning: Expected output file %s not found\n", expected_file);
+            }
         }
+        printf("=== CODEFLOW EXECUTION COMPLETE ===\n");
     }
 
     return true;

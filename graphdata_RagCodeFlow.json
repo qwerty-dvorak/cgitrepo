@@ -1,0 +1,207 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "main.py",
+      "category": "file",
+      "path": "RagCodeFlow/main.py",
+      "content": "from fastapi import FastAPI, HTTPException\nimport json\nimport os\nimport sys\nfrom src.api.client import generate_api_response\nfrom src.data.repository import read_repository_files, chunk_documents\nfrom src.embeddings.vectorstore import create_embeddings, build_faiss_index\nfrom src.models.inference import process_query\n\napp = FastAPI()\n\n# Configuration\nBASE_REPO_PATH = os.path.join(sys.base_prefix, \"repo\")\nEMBEDDING_MODEL = \"sentence-transformers/all-MiniLM-L6-v2\"\nAPI_KEY = \"sk-806fee1db5204464b271879257cd769e\"  # Replace with your actual DeepSeek API key\nQUERY = \"\"\"\nWhat is the purpose of the code?\nIs there code that serves the same purpose written in multiple places at once?\nAre there any logical errors?\nAre there any syntax errors?\nWhat improvements can be made?\n\nGive the output in this format: \n{\n        \"Summary\": \"The code is part of a React Native application for managing entities like bookings, partners, users, and boats. It includes pagination, CRUD operations, and UI components like charts, modals, and carousels.\",\n        \"Redundancy\": [\n            {\n                \"Description\": \"Pagination logic (`handlePrevPage`, `handleNextPage`, `handleRowsPerPageChange`) is repeated in multiple files.\",\n                \"Files\": [\"bookings.tsx\", \"partnerScreen.tsx\", \"users.tsx\"]\n            },\n            {\n                \"Description\": \"Edit handlers for different entities (`handleEditPartner`, `handleEditUser`) follow the same pattern.\",\n                \"Files\": [\"partnerScreen.tsx\", \"users.tsx\"]\n            }\n        ],\n        \"LogicalErrors\": [\n            {\n                \"Description\": \"Pagination does not handle edge cases where `totalPages` is 0, potentially causing UI inconsistencies.\",\n                \"File\": \"bookings.tsx\"\n            },\n            {\n                \"Description\": \"State resets are incomplete in `handleAddBooking`, possibly leading to stale form data.\",\n                \"File\": \"bookings.tsx\"\n            }\n        ],\n        \"SyntaxErrors\": [\n            {\n                \"Description\": \"Possible missing closing tags in JSX files.\",\n                \"Files\": [\"carousel.tsx\", \"expenseModal.tsx\"]\n            }\n        ],\n        \"Improvements\": [\n            {\n                \"Description\": \"Extract pagination logic into a reusable hook.\",\n                \"Suggestion\": \"Create `usePagination` to handle page state and navigation.\"\n            },\n            {\n                \"Description\": \"Add safeguards for invalid `totalPages`.\",\n                \"Suggestion\": \"Ensure `totalPages = Math.max(1, totalPages)` to prevent pagination errors.\"\n            },\n            {\n                \"Description\": \"Generalize edit handlers into a single function with entity type as a parameter.\",\n                \"Suggestion\": \"Refactor `handleEditPartner` and `handleEditUser` into a shared function.\"\n            },\n            {\n                \"Description\": \"Update outdated dependencies.\",\n                \"Suggestion\": \"Upgrade `chalk@4.0.0` and `debug@4.3.4` to newer versions.\"\n            },\n            {\n                \"Description\": \"Improve TypeScript typing.\",\n                \"Suggestion\": \"Define stricter types for entities like `Booking` and `User` to reduce `any` usage.\"\n            }\n        ]\n    }\nDo not Hallucinate\n\"\"\"\n\nIGNORE_DIRS = [\"venv\", \"node_modules\", \".git\", \"__pycache__\", \".cxx\", \"build\", \"android/app/.cxx\", \"android/app/build\"]\n\ndef validate_response(response_json):\n    required_keys = {\"Summary\", \"Redundancy\", \"LogicalErrors\", \"SyntaxErrors\", \"Improvements\"}\n    if not isinstance(response_json, dict) or not required_keys.issubset(response_json.keys()):\n        raise ValueError(\"Invalid response format\")\n    return response_json\n\n@app.get(\"/analyze/{repo_name}\")\ndef analyze_repository(repo_name: str):\n    print(BASE_REPO_PATH)\n    repo_path = os.path.join(BASE_REPO_PATH, repo_name)\n    \n    if not os.path.exists(repo_path):\n        raise HTTPException(status_code=404, detail=f\"Repository not found on {repo_path}\")\n    \n    repo_data = read_repository_files(repo_path, IGNORE_DIRS)\n    if not repo_data:\n        raise HTTPException(status_code=400, detail=\"No valid files found in the repository\")\n    \n    chunks = chunk_documents(repo_data)\n    vector_data = create_embeddings(chunks, EMBEDDING_MODEL)\n    index, vector_matrix = build_faiss_index(vector_data)\n    \n    query_vector, retrieved_chunks = process_query(QUERY, EMBEDDING_MODEL, index, vector_data)\n    context = \"\\n\\n\".join(retrieved_chunks)\n    \n    response = generate_api_response(context, QUERY, API_KEY)\n    \n    try:\n        response_json = json.loads(response)\n        validated_response = validate_response(response_json)\n        print(validated_response)\n        return validated_response\n    except (json.JSONDecodeError, ValueError) as e:\n        print(response)\n        raise HTTPException(status_code=500, detail=f\"Invalid response format: {e}\")\n",
+      "dependencies": [
+        "os",
+        "sys",
+        "src.api.client",
+        "src.data.repository",
+        "src.embeddings.vectorstore",
+        "src.models.inference",
+        "fastapi",
+        "json"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "client.py",
+      "category": "file",
+      "path": "RagCodeFlow/src/api/client.py",
+      "content": "# src/api/client.py\nfrom openai import OpenAI\n\ndef generate_api_response(context, query, api_key):\n    \"\"\"\n    Generate a response using DeepSeek API with OpenAI SDK format\n    \n    Args:\n        context (str): The relevant code snippets from the repository\n        query (str): The user's query about the codebase\n        api_key (str): API key for DeepSeek\n        \n    Returns:\n        str: The generated response analyzing the code\n    \"\"\"\n    print(\"Calling DeepSeek API using OpenAI SDK format...\")\n    \n    try:\n        # Initialize client with DeepSeek base URL\n        client = OpenAI(\n            api_key=api_key,\n            base_url=\"https://api.deepseek.com\"\n        )\n        \n        # Prepare system and user messages\n        system_message = \"You are a helpful code assistant. Analyze the provided code and answer questions about it.\"\n        user_message = f\"\"\"\nHere are relevant chunks from the codebase:\n\n{context}\n\nBased on these code excerpts, please answer the following question:\n{query}\n\"\"\"\n        \n        # Make API call\n        response = client.chat.completions.create(\n            model=\"deepseek-reasoner\",\n            messages=[\n                {\"role\": \"system\", \"content\": system_message},\n                {\"role\": \"user\", \"content\": user_message}\n            ],\n            temperature=0.3,\n            max_tokens=1500\n        )\n        \n        # Extract and return the response content\n        return response.choices[0].message.content\n    \n    except Exception as e:\n        print(f\"API request error: {str(e)}\")\n        return f\"Error calling DeepSeek API: {str(e)}\"\n",
+      "dependencies": [
+        "openai"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "repository.py",
+      "category": "file",
+      "path": "RagCodeFlow/src/data/repository.py",
+      "content": "# src/data/repository.py\nimport os\nfrom langchain.text_splitter import RecursiveCharacterTextSplitter\n\ndef read_repository_files(repo_path, ignore_dirs):\n    \"\"\"\n    Read all relevant files from a repository\n    \n    Args:\n        repo_path (str): Path to the repository\n        ignore_dirs (list): List of directories to ignore\n        \n    Returns:\n        dict: Dictionary of file paths to file contents\n    \"\"\"\n    file_contents = {}\n    print(\"\\n--- PROCESSING FILES ---\")\n    file_count = 0\n    \n    for root, dirs, files in os.walk(repo_path):\n        # Skip ignored directories\n        dirs[:] = [d for d in dirs if d not in ignore_dirs and not any(ignored in root for ignored in ignore_dirs)]\n        \n        for file in files:\n            # Focus on code and documentation files, skip build artifacts\n            if file.endswith((\".py\", \".js\", \".ts\", \".md\", \".tsx\", \".jsx\", \".json\")) and not any(build_dir in root for build_dir in [\".cxx\", \"build\"]):\n                file_path = os.path.join(root, file)\n                rel_path = os.path.relpath(file_path, repo_path)\n                \n                try:\n                    # Print each file being processed\n                    file_count += 1\n                    print(f\"{file_count}. {rel_path}\")\n                    \n                    with open(file_path, \"r\", encoding=\"utf-8\", errors=\"ignore\") as f:\n                        file_contents[file_path] = f.read()\n                except Exception as e:\n                    print(f\"   ERROR reading file {rel_path}: {e}\")\n    \n    print(f\"\\nTotal files processed: {file_count}\")\n    return file_contents\n\ndef chunk_documents(repo_data):\n    \"\"\"\n    Split documents into manageable chunks\n    \n    Args:\n        repo_data (dict): Dictionary of file paths to file contents\n        \n    Returns:\n        list: List of dictionaries containing path and content chunks\n    \"\"\"\n    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)\n    chunks = []\n    for path, content in repo_data.items():\n        for chunk in text_splitter.split_text(content):\n            chunks.append({\"path\": path, \"content\": chunk})\n    return chunks\n",
+      "dependencies": [
+        "os",
+        "langchain.text_splitter"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "vectorstore.py",
+      "category": "file",
+      "path": "RagCodeFlow/src/embeddings/vectorstore.py",
+      "content": "# src/embeddings/vectorstore.py\nimport numpy as np\nimport faiss\nfrom sentence_transformers import SentenceTransformer\n\ndef create_embeddings(chunks, model_name):\n    \"\"\"\n    Create embeddings for document chunks\n    \n    Args:\n        chunks (list): List of dictionaries containing path and content chunks\n        model_name (str): Name of the sentence transformer model to use\n        \n    Returns:\n        list: List of dictionaries with path, content, and embeddings\n    \"\"\"\n    print(f\"Loading embedding model: {model_name}\")\n    embedding_model = SentenceTransformer(model_name)\n    \n    print(f\"Creating embeddings for {len(chunks)} chunks...\")\n    vector_data = []\n    for i, chunk in enumerate(chunks):\n        if i % 100 == 0:\n            print(f\"Processing chunk {i}/{len(chunks)}\")\n        embedding = embedding_model.encode(chunk[\"content\"])\n        vector_data.append({\n            \"path\": chunk[\"path\"],\n            \"content\": chunk[\"content\"],\n            \"embedding\": embedding\n        })\n    return vector_data\n\ndef build_faiss_index(vector_data):\n    \"\"\"\n    Build a FAISS index for fast similarity search\n    \n    Args:\n        vector_data (list): List of dictionaries with path, content, and embeddings\n        \n    Returns:\n        tuple: (faiss.Index, numpy.array) The FAISS index and the vector matrix\n    \"\"\"\n    print(\"Building FAISS index...\")\n    dimension = len(vector_data[0][\"embedding\"])\n    index = faiss.IndexFlatL2(dimension)\n    vector_matrix = np.array([item[\"embedding\"] for item in vector_data]).astype(\"float32\")\n    index.add(vector_matrix)\n    return index, vector_matrix\n\ndef search_similar_chunks(index, query_vector, vector_data, k=15):\n    \"\"\"\n    Search for chunks similar to the query\n    \n    Args:\n        index (faiss.Index): The FAISS index\n        query_vector (numpy.array): The embedding of the query\n        vector_data (list): List of dictionaries with path, content, and embeddings\n        k (int): Number of similar chunks to retrieve\n        \n    Returns:\n        list: List of strings containing relevant chunks\n    \"\"\"\n    distances, indices = index.search(np.array([query_vector]).astype(\"float32\"), k)\n    retrieved_chunks = []\n    \n    # Prioritize actual source code files over build artifacts\n    source_paths = []\n    other_paths = []\n    \n    for i in indices[0]:\n        path = vector_data[i]['path']\n        content = vector_data[i]['content']\n        chunk = f\"File: {path}\\n{content}\"\n        \n        # Prioritize src directory files\n        if \"/src/\" in path and not any(build_dir in path for build_dir in [\".cxx\", \"build\"]):\n            source_paths.append(chunk)\n        else:\n            other_paths.append(chunk)\n    \n    # Return source code files first, then other files if needed\n    retrieved_chunks = source_paths + other_paths\n    return retrieved_chunks[:k]  # Still limit to k chunks total\n",
+      "dependencies": [
+        "faiss",
+        "sentence_transformers",
+        "numpy"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "inference.py",
+      "category": "file",
+      "path": "RagCodeFlow/src/models/inference.py",
+      "content": "from sentence_transformers import SentenceTransformer\n\ndef process_query(query, model_name, index, vector_data):\n    \"\"\"\n    Process a query against the codebase\n    \n    Args:\n        query (str): The user's query about the codebase\n        model_name (str): Name of the sentence transformer model\n        index (faiss.Index): The FAISS index\n        vector_data (list): List of dictionaries with path, content, and embeddings\n        \n    Returns:\n        tuple: (numpy.array, list) The query vector and retrieved chunks\n    \"\"\"\n    # Create embedding for the query\n    embedding_model = SentenceTransformer(model_name)\n    query_vector = embedding_model.encode(query)\n    \n    # Get relevant context\n    from src.embeddings.vectorstore import search_similar_chunks\n    retrieved_chunks = search_similar_chunks(index, query_vector, vector_data)\n    \n    return query_vector, retrieved_chunks\n",
+      "dependencies": [
+        "sentence_transformers"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "faiss",
+      "category": "dependency"
+    },
+    {
+      "id": 6,
+      "name": "sentence_transformers",
+      "category": "dependency"
+    },
+    {
+      "id": 7,
+      "name": "numpy",
+      "category": "dependency"
+    },
+    {
+      "id": 8,
+      "name": "os",
+      "category": "dependency"
+    },
+    {
+      "id": 9,
+      "name": "sys",
+      "category": "dependency"
+    },
+    {
+      "id": 10,
+      "name": "src.api.client",
+      "category": "dependency"
+    },
+    {
+      "id": 11,
+      "name": "src.data.repository",
+      "category": "dependency"
+    },
+    {
+      "id": 12,
+      "name": "src.embeddings.vectorstore",
+      "category": "dependency"
+    },
+    {
+      "id": 13,
+      "name": "src.models.inference",
+      "category": "dependency"
+    },
+    {
+      "id": 14,
+      "name": "fastapi",
+      "category": "dependency"
+    },
+    {
+      "id": 15,
+      "name": "json",
+      "category": "dependency"
+    },
+    {
+      "id": 16,
+      "name": "openai",
+      "category": "dependency"
+    },
+    {
+      "id": 17,
+      "name": "langchain.text_splitter",
+      "category": "dependency"
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "target": 16,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 8,
+      "relation": "depends"
+    },
+    {
+      "source": 2,
+      "target": 17,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 6,
+      "relation": "depends"
+    },
+    {
+      "source": 3,
+      "target": 7,
+      "relation": "depends"
+    },
+    {
+      "source": 4,
+      "target": 6,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 8,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 9,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 10,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 11,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 12,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 13,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 14,
+      "relation": "depends"
+    },
+    {
+      "source": 0,
+      "target": 15,
+      "relation": "depends"
+    }
+  ],
+  "language": "python"
+}

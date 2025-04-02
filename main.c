@@ -547,7 +547,10 @@ bool clone_repository(ReceivePayload *payload)
     int codeflow_result = system(codeflow_command);
     if (codeflow_result == 0)
     {
-        FILE *graph_file = fopen("graphdata.json", "r");
+        // Open graph file with the repo name
+        char graph_filename[BUFFER_SIZE] = {0};
+        sprintf(graph_filename, "graphdata_%s.json", repo_name);
+        FILE *graph_file = fopen(graph_filename, "r");
         if (graph_file == NULL)
         {
             return true;

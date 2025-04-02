@@ -1,0 +1,102 @@
+[
+  {
+    "file": "RagCodeFlow/main.py",
+    "functions": [
+      {
+        "name": "validate_response",
+        "start_line": 80,
+        "end_line": 80
+      },
+      {
+        "name": "analyze_repository",
+        "start_line": 87,
+        "end_line": 87
+      }
+    ],
+    "variables": [
+      {
+        "name": "app",
+        "defined_at_line": 10
+      },
+      {
+        "name": "BASE_REPO_PATH",
+        "defined_at_line": 13
+      },
+      {
+        "name": "EMBEDDING_MODEL",
+        "defined_at_line": 14
+      },
+      {
+        "name": "API_KEY",
+        "defined_at_line": 15
+      },
+      {
+        "name": "QUERY",
+        "defined_at_line": 16
+      },
+      {
+        "name": "IGNORE_DIRS",
+        "defined_at_line": 78
+      }
+    ]
+  },
+  {
+    "file": "RagCodeFlow/src/api/client.py",
+    "functions": [
+      {
+        "name": "generate_api_response",
+        "start_line": 4,
+        "end_line": 4
+      }
+    ],
+    "variables": null
+  },
+  {
+    "file": "RagCodeFlow/src/data/repository.py",
+    "functions": [
+      {
+        "name": "read_repository_files",
+        "start_line": 5,
+        "end_line": 5
+      },
+      {
+        "name": "chunk_documents",
+        "start_line": 43,
+        "end_line": 43
+      }
+    ],
+    "variables": null
+  },
+  {
+    "file": "RagCodeFlow/src/embeddings/vectorstore.py",
+    "functions": [
+      {
+        "name": "create_embeddings",
+        "start_line": 6,
+        "end_line": 6
+      },
+      {
+        "name": "build_faiss_index",
+        "start_line": 33,
+        "end_line": 33
+      },
+      {
+        "name": "search_similar_chunks",
+        "start_line": 50,
+        "end_line": 50
+      }
+    ],
+    "variables": null
+  },
+  {
+    "file": "RagCodeFlow/src/models/inference.py",
+    "functions": [
+      {
+        "name": "process_query",
+        "start_line": 3,
+        "end_line": 3
+      }
+    ],
+    "variables": null
+  }
+]
